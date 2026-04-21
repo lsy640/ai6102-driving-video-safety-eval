@@ -1,0 +1,17 @@
+# 抽帧产物 (1.1 GB, 可由 6102dataset/ 用 ffmpeg 重新生成)
+frames_8/
+
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+.env
+
+# IDE
+.vscode/
+.idea/
