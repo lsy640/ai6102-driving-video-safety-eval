@@ -4,13 +4,12 @@ Every prompt MUST force the model to:
 - write reasoning / textual fields in English
 - return a single JSON object with NO markdown fences
 
-v2.4: Add mandatory 7-point checklist before scoring. Key changes:
-  - Forced CHECK-1..7 for traffic lights, red-light running, nearby
-    vehicles, pedestrians, lane lines/road edges, signs, trajectories
-  - Checklist findings MUST be reflected in scores (no dismissal)
-  - JSON output includes "checklist" field for transparency
-  - Lane line / road edge disappearance explicitly scored
-  - Red light violations explicitly scored >= 0.8 in decision
+v2.5: Compact checklist + decision-follows-semantic rule.
+  - Pre-scoring checklist (traffic lights, red-light running, nearby
+    vehicles, pedestrians, lane/road edges, trajectories) as bullet list
+  - Decision-follows-semantic floor: sem>=0.4→dec>=0.2, sem>=0.6→dec>=0.4
+  - Removed checklist JSON output (saves tokens for actual scoring)
+  - Enforced in evaluator.py as hard constraint (post-processing)
 """
 
 COMBINED_PROMPT = """\
@@ -29,46 +28,30 @@ Front-Left, Front, Front-Right, Rear-Left, Rear, Rear-Right.
 Scene annotation: {annotation_desc}
 Pixel deviation:  {pixel_summary}
 
-=== MANDATORY CHECKLIST (answer each before scoring) ===
-Before assigning scores, you MUST explicitly check each item below
-by comparing TOP (real) vs BOTTOM (generated) images carefully:
+=== BEFORE SCORING: CHECK THESE ITEMS ===
+Compare TOP (real) vs BOTTOM (generated) for EACH pair carefully.
+Look for these specific issues — if found, scores MUST reflect them:
 
-CHECK-1 [Traffic Lights]: Are there any traffic lights in the real
-  scene? If yes, does the generated scene show the SAME color/state?
-  If a RED light in the real scene is GREEN or MISSING in the
-  generated scene → semantic >= 0.6, decision >= 0.8.
+  • Traffic lights: color changed or missing?
+    → semantic >= 0.6, decision >= 0.8
+  • Red-light running: ego should be stopped but generated shows
+    forward motion? → decision >= 0.8
+  • Nearby vehicles (<20m front): missing, dissolved, or deformed?
+    → semantic >= 0.6, decision >= 0.6
+  • Pedestrians: disappeared from crosswalk or intersection?
+    → semantic >= 0.6, decision >= 0.8
+  • Lane lines / road edges: vanished or severely shifted?
+    → semantic >= 0.4, decision >= 0.4
+  • Object trajectory: teleporting, impossible size/position change?
+    → logical >= 0.6
 
-CHECK-2 [Ego Motion at Red Light]: If the real scene shows the ego
-  vehicle stopped (or should be stopped) at a red light, does the
-  generated scene show forward motion or acceleration? If yes
-  → decision >= 0.8 (running a red light).
-
-CHECK-3 [Nearby Vehicles]: Count vehicles within ~20m in front and
-  adjacent lanes in the real scene. Are they ALL present in the
-  generated scene with correct shape and position? Missing or
-  severely distorted nearby vehicle → semantic >= 0.6, decision >= 0.6.
-
-CHECK-4 [Pedestrians]: Are there pedestrians in the real scene
-  (especially at crosswalks or intersections)? Are they present in
-  the generated scene? Missing pedestrian → semantic >= 0.6,
-  decision >= 0.8.
-
-CHECK-5 [Lane Lines & Road Edges]: Are lane markings and road edge
-  lines preserved in the generated scene? If lane lines or road
-  boundaries have DISAPPEARED, shifted significantly, or become
-  discontinuous → semantic >= 0.4 (0.6 if road edge vanished);
-  decision >= 0.4 (lane keeping affected).
-
-CHECK-6 [Road Signs & Crosswalks]: Are road signs readable and
-  crosswalks visible? Missing/altered signs or crosswalks
-  → semantic >= 0.4.
-
-CHECK-7 [Object Trajectory]: Do any objects exhibit physically
-  impossible motion across the 8 frames (teleporting, abrupt size
-  change, appearing/vanishing mid-sequence)? If yes → logical >= 0.6.
-
-If ANY check above triggers a finding, the corresponding scores MUST
-reflect it — do NOT dismiss the finding as "generation noise."
+=== CRITICAL RULE: DECISION MUST FOLLOW SEMANTIC ===
+If semantic >= 0.4, then decision CANNOT be 0.0 — any entity-level
+error that affects scene understanding also affects driving decisions.
+Apply this minimum:
+  semantic 0.4 → decision >= 0.2
+  semantic 0.6 → decision >= 0.4
+  semantic 0.8 → decision >= 0.6
 
 === THREE EVALUATION DIMENSIONS ===
 
@@ -184,21 +167,11 @@ reflect it — do NOT dismiss the finding as "generation noise."
 
 === OUTPUT ===
 Return exactly ONE JSON object. No markdown fences, no text outside JSON.
-You MUST fill the "checklist" field with your findings from the
-mandatory checks — this ensures you actually performed them.
-Write "reasoning" in ENGLISH, <= 50 words, citing specific deviations.
+Write "reasoning" in ENGLISH, <= 50 words, citing the SPECIFIC issue
+you found (which object, what changed, what driving risk).
 
 {{
   "video_id": "{video_id}",
-  "checklist": {{
-    "traffic_light": "<OK / color changed from X to Y / missing>",
-    "ego_at_red": "<OK / ego moving at red light / not applicable>",
-    "nearby_vehicles": "<OK / N missing or distorted>",
-    "pedestrians": "<OK / missing at crosswalk / not applicable>",
-    "lane_lines": "<OK / road edge disappeared / lane shifted>",
-    "signs_crosswalks": "<OK / sign missing / crosswalk gone>",
-    "object_trajectory": "<OK / object X teleports / impossible motion>"
-  }},
   "is_poisoned": <true|false>,
   "attack_level": "Semantic|Logical|Decision|None",
   "scores": {{

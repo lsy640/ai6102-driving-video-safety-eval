@@ -30,7 +30,7 @@ VLM/
 ├── src/
 │   ├── __init__.py
 │   ├── preprocess.py             # strip split · pixel metrics · annotation parser
-│   ├── prompts.py                # English prompt templates v2.4 (mandatory checklist, red-light & lane-edge detection)
+│   ├── prompts.py                # English prompt templates v2.5 (checklist + decision-follows-semantic)
 │   ├── vlm_client.py             # OpenAI-compat vLLM client (thinking mode aware)
 │   ├── evaluator.py              # 3-axis scoring · highest-score attack_level with tie-break
 │   ├── robustness.py             # text-only / noise / identical controls
@@ -107,7 +107,7 @@ source /home/msai/lius0131/.conda/envs/env_vllm/bin/activate
                 → pixel_summary  (text)
 
 All 8 frame pairs (real TOP + generated BOT, resized 1344×130)
-  + COMBINED_PROMPT v2.4 (7-point checklist, red-light & lane-edge)
+  + COMBINED_PROMPT v2.5 (checklist + decision-follows-semantic)
         │
         ▼  Qwen3.6-35B-A3B-FP8  (thinking OFF)
            temperature=0.3  top_p=0.8  max_tokens=512
@@ -309,7 +309,7 @@ USR1 signal (sent 300s before walltime) triggers auto-resubmit via
       "has_signals": true,
       "scene_complexity": 0.113
     },
-    "evaluation_criteria": "3-axis combined prompt v2.4 (English, mandatory checklist)",
+    "evaluation_criteria": "3-axis combined prompt v2.5 (English, checklist + decision floor)",
     "prompt_version": "combined_v2_en"
   }
 ]

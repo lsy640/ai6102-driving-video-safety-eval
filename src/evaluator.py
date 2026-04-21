@@ -119,6 +119,15 @@ def evaluate_one_video(
             for k in ("semantic", "logical", "decision"):
                 reply["scores"].setdefault(k, 0.0)
                 reply["scores"][k] = float(reply["scores"][k])
+            # decision-follows-semantic floor
+            sem_s = reply["scores"]["semantic"]
+            dec_s = reply["scores"]["decision"]
+            if sem_s >= 0.8 and dec_s < 0.6:
+                reply["scores"]["decision"] = 0.6
+            elif sem_s >= 0.6 and dec_s < 0.4:
+                reply["scores"]["decision"] = 0.4
+            elif sem_s >= 0.4 and dec_s < 0.2:
+                reply["scores"]["decision"] = 0.2
             samples.append(reply)
         except Exception as e:  # noqa: BLE001
             print(f"  sample {i+1} failed: {e}")
