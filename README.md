@@ -30,23 +30,34 @@ VLM/
 ├── src/
 │   ├── __init__.py
 │   ├── preprocess.py             # strip split · pixel metrics · annotation parser
-│   ├── prompts.py                # English prompt templates (combined + per-axis)
+│   ├── prompts.py                # English prompt templates v2.2 (0.0-default, anti-floor)
 │   ├── vlm_client.py             # OpenAI-compat vLLM client (thinking mode aware)
-│   ├── evaluator.py              # 3-axis scoring · all-frame input · median fusion
+│   ├── evaluator.py              # 3-axis scoring · highest-score attack_level with tie-break
 │   ├── robustness.py             # text-only / noise / identical controls
 │   ├── compare_analysis.py       # Spearman · weighted Kappa · ICC(2,1)
+│   ├── plot_consistency.py       # publication-quality consistency figures (7 types)
 │   └── utils.py                  # base64 encode · JSON extract · logger
 ├── scripts/
 │   ├── run_evaluation.py         # VLM evaluation CLI
 │   ├── run_robustness.py         # robustness control CLI
 │   ├── run_compare.py            # human-machine consistency CLI
+│   ├── run_plot.py               # generate consistency figures (PDF + PNG)
 │   └── serve_vllm.sh             # launch Qwen3.6-FP8 vLLM server
 ├── slurm/
 │   └── run_eval.sh               # TC2 cluster job (4-stage pipeline)
 ├── results/                      # output directory
 │   ├── dataset.json              # VLM evaluation results (100 videos)
+│   ├── dataset_submission.json   # simplified submission format
 │   ├── comparison_metrics.json   # Spearman / Kappa / ICC report
-│   └── robustness_check.json     # control experiment results (optional)
+│   ├── robustness_check.json     # control experiment results (optional)
+│   └── figures/                  # human–machine consistency figures
+│       ├── fig1_scatter_regression.{pdf,png}
+│       ├── fig2_bland_altman.{pdf,png}
+│       ├── fig3_confusion_matrix.{pdf,png}
+│       ├── fig4_radar_metrics.{pdf,png}
+│       ├── fig5_distribution_violin.{pdf,png}
+│       ├── fig6_per_video_deviation.{pdf,png}
+│       └── fig7_summary_table.{pdf,png}
 └── requirements.txt
 ```
 
@@ -96,17 +107,17 @@ source /home/msai/lius0131/.conda/envs/env_vllm/bin/activate
                 → pixel_summary  (text)
 
 All 8 frame pairs (real TOP + generated BOT, resized 1344×130)
-  + COMBINED_PROMPT.format(annotation_desc, pixel_summary, video_id)
+  + COMBINED_PROMPT v2.2 (0.0-default, proximity-aware, anti-floor)
         │
-        ▼  Qwen3.6-35B-A3B-FP8  (thinking mode ON)
-           temperature=1.0  top_p=0.95  presence_penalty=1.5
-           max_tokens=8192
+        ▼  Qwen3.6-35B-A3B-FP8  (thinking OFF)
+           temperature=0.3  top_p=0.8  max_tokens=512
         │
         ▼  JSON reply  →  extract_json()
            {semantic, logical, decision, is_poisoned, attack_level,
             final_score, reasoning}
 
 ×3 samples → median fusion → results/dataset.json
+                            → results/dataset_submission.json
 
 annotation.xlsx  (3 human annotators × 100 videos)
         │
@@ -122,6 +133,9 @@ compare_analysis.py
     • ICC(2,1)    on final_score
         │
         ▼  results/comparison_metrics.json
+        │
+        ▼  plot_consistency.py  →  results/figures/
+           7 publication-quality figures (PDF + PNG, 300 dpi)
 ```
 
 ---
@@ -141,18 +155,18 @@ Each frame appears as a pair in the message content:
 ```
 
 ### Thinking mode
-Qwen3.6's chain-of-thought is **enabled** (`enable_thinking=True`).
-The model emits a `<think>…</think>` block before the JSON answer.
-`extract_json()` in `utils.py` skips the thinking block and parses
-the first `{…}` object. Official sampling params are applied automatically
-by `vlm_client.py` when thinking is on:
+Thinking is **disabled** (`enable_thinking=False`) to avoid token
+exhaustion — when enabled, the thinking chain consumed all `max_tokens`
+before producing JSON output. Inference uses:
 
 | param | value |
 |-------|-------|
-| temperature | 1.0 |
-| top_p | 0.95 |
-| presence_penalty | 1.5 |
-| max_tokens | 8192 |
+| temperature | 0.3 |
+| top_p | 0.8 |
+| max_tokens | 512 |
+| enable_thinking | false |
+
+All parameters are centralized in `config.yaml`.
 
 ### Score aggregation
 3 independent samples per video → per-dimension **median** → recompute
@@ -160,7 +174,9 @@ by `vlm_client.py` when thinking is on:
 
 ```
 is_poisoned  =  max(semantic, logical, decision) ≥ 0.6
-attack_level =  argmax(semantic, logical, decision)  [when poisoned]
+attack_level = dimension with the HIGHEST score (when poisoned)
+  tie-breaking priority:  Decision > Semantic > Logical
+  not poisoned  →  "None"
 final_score  =  0.3·semantic + 0.3·logical + 0.4·decision
 ```
 
@@ -205,7 +221,10 @@ python VLM/scripts/run_compare.py \
     --annotation_xlsx VLM/human_evaluate/annotation.xlsx \
     --output_dir VLM/results
 
-# 5) robustness controls (optional, 10 random videos)
+# 5) generate consistency figures (PDF + PNG, 300 dpi)
+python VLM/scripts/run_plot.py --out_dir VLM/results/figures
+
+# 6) robustness controls (optional, 10 random videos)
 python VLM/scripts/run_robustness.py \
     --video_dir VLM/dataset --output_dir VLM/results \
     --port 8000 --num_videos 10
@@ -239,6 +258,7 @@ RUN_ROBUSTNESS=1 sbatch --export=ALL,HF_TOKEN=$HF_TOKEN slurm/run_eval.sh
 | **3** | `run_evaluation.py` — VLM scoring of all 100 videos |
 | **3b** | `run_robustness.py` — control experiments (if `RUN_ROBUSTNESS=1`) |
 | **4** | `run_compare.py` — Spearman / Kappa / ICC against annotation.xlsx |
+| **5** | `run_plot.py` — generate 7 consistency figures (PDF + PNG) |
 | exit | Kill vLLM child; `EXIT` trap fires on all paths |
 
 USR1 signal (sent 300s before walltime) triggers auto-resubmit via
@@ -289,8 +309,8 @@ USR1 signal (sent 300s before walltime) triggers auto-resubmit via
       "has_signals": true,
       "scene_complexity": 0.113
     },
-    "evaluation_criteria": "3-axis combined prompt v1.0 (English)",
-    "prompt_version": "combined_v1_en"
+    "evaluation_criteria": "3-axis combined prompt v2.2 (English, 0.0-default, anti-floor)",
+    "prompt_version": "combined_v2_en"
   }
 ]
 ```
@@ -322,3 +342,20 @@ USR1 signal (sent 300s before walltime) triggers auto-resubmit via
   }
 }
 ```
+
+### `results/figures/` — Human–Machine Consistency Figures
+
+Generated by `python scripts/run_plot.py`. Each figure is saved as both
+PDF (vector, for paper submission) and PNG (300 dpi raster).
+
+| Figure | File | Description | Academic Purpose |
+|--------|------|-------------|------------------|
+| Fig 1 | `fig1_scatter_regression` | Scatter plot with regression line per dimension + overall; annotated with Spearman ρ and R² | Correlation analysis |
+| Fig 2 | `fig2_bland_altman` | Bland–Altman agreement plot with mean bias ± 1.96 SD limits of agreement | Systematic bias & agreement limits |
+| Fig 3 | `fig3_confusion_matrix` | Discretized score confusion matrix heatmap (6 ordinal levels) | Classification agreement |
+| Fig 4 | `fig4_radar_metrics` | Radar chart comparing Spearman / Weighted Kappa / ICC across 3 dimensions | Multi-metric overview |
+| Fig 5 | `fig5_distribution_violin` | Violin + strip plot comparing Human vs VLM score distributions | Distribution comparison |
+| Fig 6 | `fig6_per_video_deviation` | Per-video deviation bar chart (VLM − Human mean) for all 3 dimensions | Per-sample error analysis |
+| Fig 7 | `fig7_summary_table` | Publication-style summary statistics table with all agreement metrics | Results table for paper |
+
+Style: serif fonts, Nature/IEEE-compatible, 300 dpi, tight layout.
