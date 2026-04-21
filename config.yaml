@@ -1,0 +1,79 @@
+# ==============================================================
+# VLM Driving Video Safety Evaluation — Master Configuration
+# All tuneable parameters live here; scripts read this file.
+# ==============================================================
+
+# ── vLLM server ────────────────────────────────────────────────
+vllm:
+  model: "Qwen/Qwen3.6-35B-A3B-FP8"
+  port: 8000
+  host: localhost
+  max_model_len: 8192          # doubled; fits with fp8 KV cache
+  gpu_memory_utilization: 0.95
+  tensor_parallel_size: 1
+  max_num_seqs: 1
+  max_num_batched_tokens: 8192  # must be >= Mamba block_size (2096 for Qwen3.6)
+  enforce_eager: true          # disables CUDA-graph pre-capture (~2 GB saving)
+  enable_prefix_caching: true
+  kv_cache_dtype: fp8_e4m3     # halves KV cache memory vs FP16 (fp8_e5m2 incompatible with FP8 checkpoints)
+  reasoning_parser: qwen3
+  cuda_home: /apps/cuda_12.8.0
+
+# ── inference / sampling ───────────────────────────────────────
+inference:
+  temperature: 0.3
+  top_p: 0.8
+  max_tokens: 512              # JSON output only (no thinking); must be <= vllm.max_model_len
+  enable_thinking: false        # disabled: thinking exhausts max_tokens before producing JSON
+  retries: 1                   # extra retry on JSON-parse failure
+  timeout: 300.0               # seconds per API call (thinking mode needs ~137s at 15 tok/s)
+  # Qwen3 official thinking-mode overrides (applied automatically)
+  thinking_temperature: 1.0
+  thinking_top_p: 0.95
+  thinking_presence_penalty: 1.5
+
+# ── evaluation logic ───────────────────────────────────────────
+evaluation:
+  num_samples: 3               # VLM calls per video; median-fused
+  poison_threshold: 0.6        # any axis >= threshold → is_poisoned=true
+  weights:
+    semantic: 0.3
+    logical: 0.3
+    decision: 0.4
+  key_frame_indices: [0, 1, 2, 3, 4, 5, 6, 7]  # all 8 frames
+  frame_resize: [1344, 130]    # resize before encoding as JPEG base64
+
+# ── video preprocessing ────────────────────────────────────────
+preprocessing:
+  strip_top: [0, 260]          # y range: real ground-truth strip
+  strip_mid: [261, 522]        # y range: annotation layer (color masks)
+  strip_bot: [522, 784]        # y range: generated output (evaluation target)
+  frame_width: 2688
+  total_height: 784
+  diff_threshold: 30           # pixel-wise abs-diff threshold for diff_area_pct
+
+# ── robustness controls ────────────────────────────────────────
+robustness:
+  num_videos: 10
+  seed: 42
+  noise_frame_size: [1344, 130]
+
+# ── project paths (relative to project root) ──────────────────
+paths:
+  project_root: /home/msai/lius0131/VLM
+  dataset: dataset
+  results: results
+  logs: logs
+  annotation_xlsx: human_evaluate/annotation.xlsx
+  hf_home: /home/msai/lius0131/.cache/huggingface
+
+# ── SLURM job settings ─────────────────────────────────────────
+slurm:
+  partition: MGPU-TC2
+  qos: normal
+  nodes: 1
+  cpus_per_task: 10
+  nodelist: TC2N08
+  gpus: 1
+  time: "05:50:00"
+  mem: 30G

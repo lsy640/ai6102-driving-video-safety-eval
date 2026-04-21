@@ -1,10 +1,12 @@
-# 抽帧产物 (1.1 GB, 可由 6102dataset/ 用 ffmpeg 重新生成)
+# Dataset (large video files)
+dataset/
+
+# Legacy frames
 frames_8/
 
-# macOS
-.DS_Store
-
-# Python
+# Runtime outputs
+results/
+logs/
 __pycache__/
 *.pyc
 *.pyo
@@ -12,6 +14,14 @@ __pycache__/
 venv/
 .env
 
-# IDE
+# SLURM output
+output_*.out
+error_*.err
+
+# Partial saves
+.*.partial
+
+# OS / IDE
+.DS_Store
 .vscode/
 .idea/
