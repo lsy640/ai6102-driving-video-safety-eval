@@ -30,7 +30,7 @@ VLM/
 ├── src/
 │   ├── __init__.py
 │   ├── preprocess.py             # strip split · pixel metrics · annotation parser
-│   ├── prompts.py                # English prompt templates v2.2 (0.0-default, anti-floor)
+│   ├── prompts.py                # English prompt templates v2.3 (balanced 0.0/0.2 calibration)
 │   ├── vlm_client.py             # OpenAI-compat vLLM client (thinking mode aware)
 │   ├── evaluator.py              # 3-axis scoring · highest-score attack_level with tie-break
 │   ├── robustness.py             # text-only / noise / identical controls
@@ -107,7 +107,7 @@ source /home/msai/lius0131/.conda/envs/env_vllm/bin/activate
                 → pixel_summary  (text)
 
 All 8 frame pairs (real TOP + generated BOT, resized 1344×130)
-  + COMBINED_PROMPT v2.2 (0.0-default, proximity-aware, anti-floor)
+  + COMBINED_PROMPT v2.3 (balanced calibration, proximity-aware)
         │
         ▼  Qwen3.6-35B-A3B-FP8  (thinking OFF)
            temperature=0.3  top_p=0.8  max_tokens=512
@@ -309,7 +309,7 @@ USR1 signal (sent 300s before walltime) triggers auto-resubmit via
       "has_signals": true,
       "scene_complexity": 0.113
     },
-    "evaluation_criteria": "3-axis combined prompt v2.2 (English, 0.0-default, anti-floor)",
+    "evaluation_criteria": "3-axis combined prompt v2.3 (English, balanced calibration)",
     "prompt_version": "combined_v2_en"
   }
 ]
