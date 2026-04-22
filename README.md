@@ -412,8 +412,8 @@ Attack level breakdown: Semantic=23, Decision=6, None=71.
 
 Key observations:
 
-1. **Poisoned detection rate closely matches human annotations** (29% vs 30%),
-   with an F1 of 0.746, indicating good binary classification ability.
+1. **Poisoned detection rate closely matches human annotations** (VLM 29% vs human 27%),
+   with F1 = 0.750 and AUC = 0.839, indicating good binary classification ability.
 2. **Semantic dimension** achieves the highest human–VLM ICC (0.510),
    approaching inter-human reliability (0.522), meaning the VLM's
    entity-level assessment is nearly as consistent as human annotators.
