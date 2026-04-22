@@ -28,7 +28,7 @@
         "avg_psnr": 17.7,
         "temporal_slope": 1.35
       },
-      "seconds": 26.84
+      "seconds": 26.97
     },
     "annotation_layer": {
       "obstacle_density": 0.0651,
@@ -73,7 +73,7 @@
         "avg_psnr": 15.86,
         "temporal_slope": 3.349
       },
-      "seconds": 28.95
+      "seconds": 29.12
     },
     "annotation_layer": {
       "obstacle_density": 0.0815,
@@ -118,7 +118,7 @@
         "avg_psnr": 20.46,
         "temporal_slope": 0.031
       },
-      "seconds": 26.69
+      "seconds": 26.91
     },
     "annotation_layer": {
       "obstacle_density": 0.1732,
@@ -163,7 +163,7 @@
         "avg_psnr": 18.14,
         "temporal_slope": 1.333
       },
-      "seconds": 28.95
+      "seconds": 29.38
     },
     "annotation_layer": {
       "obstacle_density": 0.1545,
@@ -208,7 +208,7 @@
         "avg_psnr": 15.93,
         "temporal_slope": 2.018
       },
-      "seconds": 26.28
+      "seconds": 26.62
     },
     "annotation_layer": {
       "obstacle_density": 0.0507,
@@ -253,7 +253,7 @@
         "avg_psnr": 18.11,
         "temporal_slope": 1.636
       },
-      "seconds": 26.06
+      "seconds": 26.26
     },
     "annotation_layer": {
       "obstacle_density": 0.0271,
@@ -298,7 +298,7 @@
         "avg_psnr": 13.97,
         "temporal_slope": 10.587
       },
-      "seconds": 26.41
+      "seconds": 26.87
     },
     "annotation_layer": {
       "obstacle_density": 0.0106,
@@ -343,7 +343,7 @@
         "avg_psnr": 20.52,
         "temporal_slope": 0.958
       },
-      "seconds": 26.14
+      "seconds": 26.61
     },
     "annotation_layer": {
       "obstacle_density": 0.0835,
@@ -388,7 +388,7 @@
         "avg_psnr": 20.15,
         "temporal_slope": 0.529
       },
-      "seconds": 27.0
+      "seconds": 27.35
     },
     "annotation_layer": {
       "obstacle_density": 0.0805,
@@ -433,7 +433,7 @@
         "avg_psnr": 19.99,
         "temporal_slope": 1.641
       },
-      "seconds": 25.67
+      "seconds": 25.92
     },
     "annotation_layer": {
       "obstacle_density": 0.1159,
@@ -478,7 +478,7 @@
         "avg_psnr": 21.29,
         "temporal_slope": 0.108
       },
-      "seconds": 26.46
+      "seconds": 26.59
     },
     "annotation_layer": {
       "obstacle_density": 0.1505,
@@ -523,7 +523,7 @@
         "avg_psnr": 17.23,
         "temporal_slope": 1.798
       },
-      "seconds": 25.77
+      "seconds": 26.27
     },
     "annotation_layer": {
       "obstacle_density": 0.0471,
@@ -568,7 +568,7 @@
         "avg_psnr": 17.89,
         "temporal_slope": 2.152
       },
-      "seconds": 26.6
+      "seconds": 27.06
     },
     "annotation_layer": {
       "obstacle_density": 0.0477,
@@ -613,7 +613,7 @@
         "avg_psnr": 18.57,
         "temporal_slope": 2.368
       },
-      "seconds": 30.16
+      "seconds": 30.51
     },
     "annotation_layer": {
       "obstacle_density": 0.0695,
@@ -703,7 +703,7 @@
         "avg_psnr": 15.54,
         "temporal_slope": 3.781
       },
-      "seconds": 29.26
+      "seconds": 29.16
     },
     "annotation_layer": {
       "obstacle_density": 0.0708,
@@ -748,7 +748,7 @@
         "avg_psnr": 17.44,
         "temporal_slope": 2.252
       },
-      "seconds": 27.13
+      "seconds": 26.91
     },
     "annotation_layer": {
       "obstacle_density": 0.1333,
@@ -793,7 +793,7 @@
         "avg_psnr": 13.88,
         "temporal_slope": 3.619
       },
-      "seconds": 28.31
+      "seconds": 28.06
     },
     "annotation_layer": {
       "obstacle_density": 0.1625,
@@ -838,7 +838,7 @@
         "avg_psnr": 20.49,
         "temporal_slope": 0.713
       },
-      "seconds": 27.6
+      "seconds": 27.28
     },
     "annotation_layer": {
       "obstacle_density": 0.083,
@@ -883,7 +883,7 @@
         "avg_psnr": 17.7,
         "temporal_slope": 1.752
       },
-      "seconds": 27.07
+      "seconds": 26.6
     },
     "annotation_layer": {
       "obstacle_density": 0.158,
@@ -928,7 +928,7 @@
         "avg_psnr": 19.18,
         "temporal_slope": 2.003
       },
-      "seconds": 27.0
+      "seconds": 26.97
     },
     "annotation_layer": {
       "obstacle_density": 0.0278,
@@ -973,7 +973,7 @@
         "avg_psnr": 17.91,
         "temporal_slope": 2.245
       },
-      "seconds": 25.96
+      "seconds": 26.29
     },
     "annotation_layer": {
       "obstacle_density": 0.0158,
@@ -1018,7 +1018,7 @@
         "avg_psnr": 16.6,
         "temporal_slope": 2.471
       },
-      "seconds": 26.0
+      "seconds": 26.23
     },
     "annotation_layer": {
       "obstacle_density": 0.1452,
@@ -1063,7 +1063,7 @@
         "avg_psnr": 20.06,
         "temporal_slope": 1.065
       },
-      "seconds": 29.29
+      "seconds": 29.61
     },
     "annotation_layer": {
       "obstacle_density": 0.0365,
@@ -1108,7 +1108,7 @@
         "avg_psnr": 19.88,
         "temporal_slope": 0.518
       },
-      "seconds": 26.33
+      "seconds": 26.76
     },
     "annotation_layer": {
       "obstacle_density": 0.1505,
@@ -1153,7 +1153,7 @@
         "avg_psnr": 14.7,
         "temporal_slope": 3.836
       },
-      "seconds": 26.93
+      "seconds": 27.22
     },
     "annotation_layer": {
       "obstacle_density": 0.0965,
@@ -1198,7 +1198,7 @@
         "avg_psnr": 23.49,
         "temporal_slope": 0.807
       },
-      "seconds": 26.94
+      "seconds": 27.25
     },
     "annotation_layer": {
       "obstacle_density": 0.008,
@@ -1243,7 +1243,7 @@
         "avg_psnr": 18.04,
         "temporal_slope": 1.394
       },
-      "seconds": 26.14
+      "seconds": 26.42
     },
     "annotation_layer": {
       "obstacle_density": 0.047,
@@ -1288,7 +1288,7 @@
         "avg_psnr": 15.23,
         "temporal_slope": 2.563
       },
-      "seconds": 28.34
+      "seconds": 28.71
     },
     "annotation_layer": {
       "obstacle_density": 0.0576,
@@ -1333,7 +1333,7 @@
         "avg_psnr": 18.05,
         "temporal_slope": 2.44
       },
-      "seconds": 27.1
+      "seconds": 27.53
     },
     "annotation_layer": {
       "obstacle_density": 0.1486,
@@ -1378,7 +1378,7 @@
         "avg_psnr": 16.52,
         "temporal_slope": 2.254
       },
-      "seconds": 29.04
+      "seconds": 29.42
     },
     "annotation_layer": {
       "obstacle_density": 0.1085,
@@ -1423,7 +1423,7 @@
         "avg_psnr": 16.81,
         "temporal_slope": 1.593
       },
-      "seconds": 27.02
+      "seconds": 27.38
     },
     "annotation_layer": {
       "obstacle_density": 0.0681,
@@ -1468,7 +1468,7 @@
         "avg_psnr": 16.77,
         "temporal_slope": 2.51
       },
-      "seconds": 26.96
+      "seconds": 27.27
     },
     "annotation_layer": {
       "obstacle_density": 0.0329,
@@ -1513,7 +1513,7 @@
         "avg_psnr": 20.8,
         "temporal_slope": 0.003
       },
-      "seconds": 26.17
+      "seconds": 26.58
     },
     "annotation_layer": {
       "obstacle_density": 0.0258,
@@ -1558,7 +1558,7 @@
         "avg_psnr": 19.74,
         "temporal_slope": 0.968
       },
-      "seconds": 25.82
+      "seconds": 26.06
     },
     "annotation_layer": {
       "obstacle_density": 0.0689,
@@ -1603,7 +1603,7 @@
         "avg_psnr": 14.9,
         "temporal_slope": 3.025
       },
-      "seconds": 29.21
+      "seconds": 29.71
     },
     "annotation_layer": {
       "obstacle_density": 0.1323,
@@ -1648,7 +1648,7 @@
         "avg_psnr": 19.51,
         "temporal_slope": 0.803
       },
-      "seconds": 26.88
+      "seconds": 27.26
     },
     "annotation_layer": {
       "obstacle_density": 0.0583,
@@ -1693,7 +1693,7 @@
         "avg_psnr": 16.71,
         "temporal_slope": 3.043
       },
-      "seconds": 27.1
+      "seconds": 27.64
     },
     "annotation_layer": {
       "obstacle_density": 0.0431,
@@ -1738,7 +1738,7 @@
         "avg_psnr": 24.3,
         "temporal_slope": 0.5
       },
-      "seconds": 27.17
+      "seconds": 27.69
     },
     "annotation_layer": {
       "obstacle_density": 0.0324,
@@ -1783,7 +1783,7 @@
         "avg_psnr": 18.7,
         "temporal_slope": 1.002
       },
-      "seconds": 27.78
+      "seconds": 28.22
     },
     "annotation_layer": {
       "obstacle_density": 0.2026,
@@ -1828,7 +1828,7 @@
         "avg_psnr": 14.86,
         "temporal_slope": 3.416
       },
-      "seconds": 29.35
+      "seconds": 29.78
     },
     "annotation_layer": {
       "obstacle_density": 0.2245,
@@ -1873,7 +1873,7 @@
         "avg_psnr": 19.14,
         "temporal_slope": 1.124
       },
-      "seconds": 25.88
+      "seconds": 26.31
     },
     "annotation_layer": {
       "obstacle_density": 0.1185,
@@ -1918,7 +1918,7 @@
         "avg_psnr": 18.35,
         "temporal_slope": 2.073
       },
-      "seconds": 27.88
+      "seconds": 28.16
     },
     "annotation_layer": {
       "obstacle_density": 0.0933,
@@ -1963,7 +1963,7 @@
         "avg_psnr": 13.64,
         "temporal_slope": 4.76
       },
-      "seconds": 27.85
+      "seconds": 28.12
     },
     "annotation_layer": {
       "obstacle_density": 0.0477,
@@ -2008,7 +2008,7 @@
         "avg_psnr": 14.26,
         "temporal_slope": 3.779
       },
-      "seconds": 27.25
+      "seconds": 27.52
     },
     "annotation_layer": {
       "obstacle_density": 0.0987,
@@ -2053,7 +2053,7 @@
         "avg_psnr": 15.4,
         "temporal_slope": 3.626
       },
-      "seconds": 27.5
+      "seconds": 27.81
     },
     "annotation_layer": {
       "obstacle_density": 0.1355,
@@ -2098,7 +2098,7 @@
         "avg_psnr": 14.44,
         "temporal_slope": 3.545
       },
-      "seconds": 25.97
+      "seconds": 26.28
     },
     "annotation_layer": {
       "obstacle_density": 0.0282,
@@ -2143,7 +2143,7 @@
         "avg_psnr": 17.75,
         "temporal_slope": 1.622
       },
-      "seconds": 26.19
+      "seconds": 26.55
     },
     "annotation_layer": {
       "obstacle_density": 0.0235,
@@ -2188,7 +2188,7 @@
         "avg_psnr": 16.36,
         "temporal_slope": 1.515
       },
-      "seconds": 26.76
+      "seconds": 27.14
     },
     "annotation_layer": {
       "obstacle_density": 0.0267,
@@ -2233,7 +2233,7 @@
         "avg_psnr": 16.92,
         "temporal_slope": 3.91
       },
-      "seconds": 26.87
+      "seconds": 27.03
     },
     "annotation_layer": {
       "obstacle_density": 0.0521,
@@ -2278,7 +2278,7 @@
         "avg_psnr": 18.3,
         "temporal_slope": 1.456
       },
-      "seconds": 27.38
+      "seconds": 27.67
     },
     "annotation_layer": {
       "obstacle_density": 0.1766,
@@ -2323,7 +2323,7 @@
         "avg_psnr": 19.75,
         "temporal_slope": 1.453
       },
-      "seconds": 26.81
+      "seconds": 27.19
     },
     "annotation_layer": {
       "obstacle_density": 0.0431,
@@ -2368,7 +2368,7 @@
         "avg_psnr": 16.89,
         "temporal_slope": 2.635
       },
-      "seconds": 27.87
+      "seconds": 28.21
     },
     "annotation_layer": {
       "obstacle_density": 0.0659,
@@ -2413,7 +2413,7 @@
         "avg_psnr": 20.53,
         "temporal_slope": 0.878
       },
-      "seconds": 27.03
+      "seconds": 27.32
     },
     "annotation_layer": {
       "obstacle_density": 0.0265,
@@ -2458,7 +2458,7 @@
         "avg_psnr": 14.42,
         "temporal_slope": 3.446
       },
-      "seconds": 26.93
+      "seconds": 27.39
     },
     "annotation_layer": {
       "obstacle_density": 0.0728,
@@ -2503,7 +2503,7 @@
         "avg_psnr": 15.06,
         "temporal_slope": 2.125
       },
-      "seconds": 24.55
+      "seconds": 24.82
     },
     "annotation_layer": {
       "obstacle_density": 0.0363,
@@ -2548,7 +2548,7 @@
         "avg_psnr": 17.01,
         "temporal_slope": 1.373
       },
-      "seconds": 26.24
+      "seconds": 26.51
     },
     "annotation_layer": {
       "obstacle_density": 0.0325,
@@ -2593,7 +2593,7 @@
         "avg_psnr": 21.31,
         "temporal_slope": 0.839
       },
-      "seconds": 26.5
+      "seconds": 26.79
     },
     "annotation_layer": {
       "obstacle_density": 0.1049,
@@ -2638,7 +2638,7 @@
         "avg_psnr": 18.53,
         "temporal_slope": 1.5
       },
-      "seconds": 27.73
+      "seconds": 28.11
     },
     "annotation_layer": {
       "obstacle_density": 0.0912,
@@ -2683,7 +2683,7 @@
         "avg_psnr": 18.27,
         "temporal_slope": 1.162
       },
-      "seconds": 26.44
+      "seconds": 26.72
     },
     "annotation_layer": {
       "obstacle_density": 0.0978,
@@ -2728,7 +2728,7 @@
         "avg_psnr": 17.49,
         "temporal_slope": 2.03
       },
-      "seconds": 27.06
+      "seconds": 27.3
     },
     "annotation_layer": {
       "obstacle_density": 0.0382,
@@ -2773,7 +2773,7 @@
         "avg_psnr": 18.52,
         "temporal_slope": 1.843
       },
-      "seconds": 27.06
+      "seconds": 27.31
     },
     "annotation_layer": {
       "obstacle_density": 0.0887,
@@ -2818,7 +2818,7 @@
         "avg_psnr": 16.95,
         "temporal_slope": 1.556
       },
-      "seconds": 26.91
+      "seconds": 27.08
     },
     "annotation_layer": {
       "obstacle_density": 0.0538,
@@ -2863,7 +2863,7 @@
         "avg_psnr": 16.8,
         "temporal_slope": 3.515
       },
-      "seconds": 26.42
+      "seconds": 26.81
     },
     "annotation_layer": {
       "obstacle_density": 0.056,
@@ -2908,7 +2908,7 @@
         "avg_psnr": 15.67,
         "temporal_slope": 3.808
       },
-      "seconds": 27.14
+      "seconds": 27.46
     },
     "annotation_layer": {
       "obstacle_density": 0.0644,
@@ -2953,7 +2953,7 @@
         "avg_psnr": 17.04,
         "temporal_slope": 2.142
       },
-      "seconds": 27.29
+      "seconds": 27.51
     },
     "annotation_layer": {
       "obstacle_density": 0.1121,
@@ -2998,7 +2998,7 @@
         "avg_psnr": 20.77,
         "temporal_slope": 0.03
       },
-      "seconds": 27.7
+      "seconds": 27.95
     },
     "annotation_layer": {
       "obstacle_density": 0.1455,
@@ -3043,7 +3043,7 @@
         "avg_psnr": 20.35,
         "temporal_slope": 0.633
       },
-      "seconds": 26.41
+      "seconds": 26.73
     },
     "annotation_layer": {
       "obstacle_density": 0.0651,
@@ -3088,7 +3088,7 @@
         "avg_psnr": 15.49,
         "temporal_slope": 2.879
       },
-      "seconds": 27.67
+      "seconds": 28.0
     },
     "annotation_layer": {
       "obstacle_density": 0.0357,
@@ -3133,7 +3133,7 @@
         "avg_psnr": 20.35,
         "temporal_slope": 0.734
       },
-      "seconds": 26.76
+      "seconds": 26.91
     },
     "annotation_layer": {
       "obstacle_density": 0.0915,
@@ -3178,7 +3178,7 @@
         "avg_psnr": 16.59,
         "temporal_slope": 2.356
       },
-      "seconds": 27.82
+      "seconds": 27.89
     },
     "annotation_layer": {
       "obstacle_density": 0.0171,
@@ -3223,7 +3223,7 @@
         "avg_psnr": 18.14,
         "temporal_slope": 2.211
       },
-      "seconds": 27.28
+      "seconds": 27.4
     },
     "annotation_layer": {
       "obstacle_density": 0.0646,
@@ -3268,7 +3268,7 @@
         "avg_psnr": 15.47,
         "temporal_slope": 4.077
       },
-      "seconds": 28.21
+      "seconds": 28.56
     },
     "annotation_layer": {
       "obstacle_density": 0.0489,
@@ -3313,7 +3313,7 @@
         "avg_psnr": 22.25,
         "temporal_slope": 0.702
       },
-      "seconds": 26.43
+      "seconds": 26.62
     },
     "annotation_layer": {
       "obstacle_density": 0.0263,
@@ -3358,7 +3358,7 @@
         "avg_psnr": 19.05,
         "temporal_slope": 1.831
       },
-      "seconds": 26.05
+      "seconds": 26.27
     },
     "annotation_layer": {
       "obstacle_density": 0.0298,
@@ -3403,7 +3403,7 @@
         "avg_psnr": 18.77,
         "temporal_slope": 1.786
       },
-      "seconds": 26.88
+      "seconds": 27.11
     },
     "annotation_layer": {
       "obstacle_density": 0.0525,
@@ -3448,7 +3448,7 @@
         "avg_psnr": 24.17,
         "temporal_slope": 0.515
       },
-      "seconds": 26.93
+      "seconds": 27.17
     },
     "annotation_layer": {
       "obstacle_density": 0.0263,
@@ -3493,7 +3493,7 @@
         "avg_psnr": 17.66,
         "temporal_slope": 1.52
       },
-      "seconds": 25.69
+      "seconds": 25.89
     },
     "annotation_layer": {
       "obstacle_density": 0.1266,
@@ -3538,7 +3538,7 @@
         "avg_psnr": 16.4,
         "temporal_slope": 2.415
       },
-      "seconds": 28.47
+      "seconds": 28.7
     },
     "annotation_layer": {
       "obstacle_density": 0.1012,
@@ -3583,7 +3583,7 @@
         "avg_psnr": 18.28,
         "temporal_slope": 1.408
       },
-      "seconds": 26.83
+      "seconds": 27.02
     },
     "annotation_layer": {
       "obstacle_density": 0.1165,
@@ -3628,7 +3628,7 @@
         "avg_psnr": 18.08,
         "temporal_slope": 1.358
       },
-      "seconds": 26.84
+      "seconds": 27.07
     },
     "annotation_layer": {
       "obstacle_density": 0.1102,
@@ -3673,7 +3673,7 @@
         "avg_psnr": 15.1,
         "temporal_slope": 3.28
       },
-      "seconds": 30.43
+      "seconds": 30.82
     },
     "annotation_layer": {
       "obstacle_density": 0.0291,
@@ -3718,7 +3718,7 @@
         "avg_psnr": 21.0,
         "temporal_slope": 0.518
       },
-      "seconds": 26.41
+      "seconds": 26.69
     },
     "annotation_layer": {
       "obstacle_density": 0.1383,
@@ -3763,7 +3763,7 @@
         "avg_psnr": 14.47,
         "temporal_slope": 4.302
       },
-      "seconds": 28.66
+      "seconds": 28.96
     },
     "annotation_layer": {
       "obstacle_density": 0.0954,
@@ -3808,7 +3808,7 @@
         "avg_psnr": 17.21,
         "temporal_slope": 1.875
       },
-      "seconds": 26.19
+      "seconds": 26.33
     },
     "annotation_layer": {
       "obstacle_density": 0.0345,
@@ -3853,7 +3853,7 @@
         "avg_psnr": 18.49,
         "temporal_slope": 0.971
       },
-      "seconds": 26.99
+      "seconds": 27.27
     },
     "annotation_layer": {
       "obstacle_density": 0.0983,
@@ -3898,7 +3898,7 @@
         "avg_psnr": 17.88,
         "temporal_slope": 1.683
       },
-      "seconds": 26.77
+      "seconds": 27.06
     },
     "annotation_layer": {
       "obstacle_density": 0.1102,
@@ -3943,7 +3943,7 @@
         "avg_psnr": 19.69,
         "temporal_slope": 0.534
       },
-      "seconds": 26.68
+      "seconds": 26.91
     },
     "annotation_layer": {
       "obstacle_density": 0.1176,
@@ -3988,7 +3988,7 @@
         "avg_psnr": 19.58,
         "temporal_slope": 1.136
       },
-      "seconds": 26.63
+      "seconds": 26.71
     },
     "annotation_layer": {
       "obstacle_density": 0.0709,
@@ -4033,7 +4033,7 @@
         "avg_psnr": 19.16,
         "temporal_slope": 1.223
       },
-      "seconds": 26.42
+      "seconds": 26.54
     },
     "annotation_layer": {
       "obstacle_density": 0.0522,
@@ -4078,7 +4078,7 @@
         "avg_psnr": 26.43,
         "temporal_slope": 0.575
       },
-      "seconds": 25.95
+      "seconds": 26.09
     },
     "annotation_layer": {
       "obstacle_density": 0.0157,
@@ -4123,7 +4123,7 @@
         "avg_psnr": 17.35,
         "temporal_slope": 1.265
       },
-      "seconds": 27.68
+      "seconds": 27.87
     },
     "annotation_layer": {
       "obstacle_density": 0.1187,
@@ -4168,7 +4168,7 @@
         "avg_psnr": 16.23,
         "temporal_slope": 2.493
       },
-      "seconds": 26.93
+      "seconds": 27.06
     },
     "annotation_layer": {
       "obstacle_density": 0.2272,
@@ -4213,7 +4213,7 @@
         "avg_psnr": 15.13,
         "temporal_slope": 3.678
       },
-      "seconds": 28.09
+      "seconds": 28.31
     },
     "annotation_layer": {
       "obstacle_density": 0.051,
@@ -4258,7 +4258,7 @@
         "avg_psnr": 25.24,
         "temporal_slope": 0.413
       },
-      "seconds": 28.11
+      "seconds": 27.57
     },
     "annotation_layer": {
       "obstacle_density": 0.0187,
@@ -4303,7 +4303,7 @@
         "avg_psnr": 19.2,
         "temporal_slope": 2.068
       },
-      "seconds": 26.74
+      "seconds": 26.64
     },
     "annotation_layer": {
       "obstacle_density": 0.1057,
@@ -4348,7 +4348,7 @@
         "avg_psnr": 15.66,
         "temporal_slope": 2.268
       },
-      "seconds": 28.11
+      "seconds": 28.08
     },
     "annotation_layer": {
       "obstacle_density": 0.0878,
@@ -4393,7 +4393,7 @@
         "avg_psnr": 25.32,
         "temporal_slope": 0.223
       },
-      "seconds": 27.14
+      "seconds": 27.3
     },
     "annotation_layer": {
       "obstacle_density": 0.0174,
@@ -4438,7 +4438,7 @@
         "avg_psnr": 15.29,
         "temporal_slope": 2.459
       },
-      "seconds": 26.41
+      "seconds": 26.52
     },
     "annotation_layer": {
       "obstacle_density": 0.128,
@@ -4483,7 +4483,7 @@
         "avg_psnr": 20.27,
         "temporal_slope": 0.762
       },
-      "seconds": 26.28
+      "seconds": 26.47
     },
     "annotation_layer": {
       "obstacle_density": 0.0735,
