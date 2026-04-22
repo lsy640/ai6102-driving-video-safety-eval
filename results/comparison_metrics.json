@@ -1,0 +1,41 @@
+{
+  "n_videos": 100,
+  "dimensions": {
+    "semantic": {
+      "n_valid": 100,
+      "human_avg_mean": 0.253,
+      "vlm_mean": 0.178,
+      "spearman_r": 0.468,
+      "spearman_p": 0.0,
+      "weighted_kappa": 0.335,
+      "icc21_human_vs_vlm": 0.51,
+      "icc21_inter_human": 0.522
+    },
+    "logical": {
+      "n_valid": 100,
+      "human_avg_mean": 0.233,
+      "vlm_mean": 0.064,
+      "spearman_r": 0.497,
+      "spearman_p": 0.0,
+      "weighted_kappa": 0.235,
+      "icc21_human_vs_vlm": 0.322,
+      "icc21_inter_human": 0.613
+    },
+    "decision": {
+      "n_valid": 100,
+      "human_avg_mean": 0.249,
+      "vlm_mean": 0.084,
+      "spearman_r": 0.496,
+      "spearman_p": 0.0,
+      "weighted_kappa": 0.266,
+      "icc21_human_vs_vlm": 0.382,
+      "icc21_inter_human": 0.649
+    }
+  },
+  "overall": {
+    "n_valid": 100,
+    "spearman_r": 0.587,
+    "spearman_p": 0.0,
+    "icc21_final_score": 0.536
+  }
+}

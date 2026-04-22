@@ -4,11 +4,8 @@ dataset/
 # Legacy frames
 frames_8/
 
-# Runtime outputs
-results/
-# But keep figures for README rendering on GitHub
-!results/figures/
-!results/figures/*.png
+# Runtime outputs — track all results except partial saves
+!results/
 logs/
 __pycache__/
 *.pyc
