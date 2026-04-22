@@ -35,20 +35,22 @@ VLM/
 │   ├── evaluator.py              # 3-axis scoring · highest-score attack_level with tie-break
 │   ├── robustness.py             # text-only / noise / identical controls
 │   ├── compare_analysis.py       # Spearman · weighted Kappa · ICC(2,1)
-│   ├── plot_consistency.py       # publication-quality consistency figures (7 types)
+│   ├── plot_consistency.py       # publication-quality consistency figures (8 types)
 │   └── utils.py                  # base64 encode · JSON extract · logger
 ├── scripts/
 │   ├── run_evaluation.py         # VLM evaluation CLI
 │   ├── run_robustness.py         # robustness control CLI
 │   ├── run_compare.py            # human-machine consistency CLI
 │   ├── run_plot.py               # generate consistency figures (PDF + PNG)
+│   ├── gen_human_submission.py   # convert human annotation xlsx → submission JSON
 │   └── serve_vllm.sh             # launch Qwen3.6-FP8 vLLM server
 ├── slurm/
 │   └── run_eval.sh               # TC2 cluster job (4-stage pipeline)
 ├── results/                      # output directory
 │   ├── dataset.json              # VLM evaluation results (100 videos)
 │   ├── dataset_submission.json   # simplified submission format
-│   ├── comparison_metrics.json   # Spearman / Kappa / ICC report
+│   ├── human_submission.json     # human annotation in submission format
+│   ├── comparison_metrics.json   # Spearman / Kappa / ICC / binary classification
 │   ├── robustness_check.json     # control experiment results (optional)
 │   └── figures/                  # human–machine consistency figures
 │       ├── fig1_scatter_regression.{pdf,png}
@@ -57,7 +59,8 @@ VLM/
 │       ├── fig4_radar_metrics.{pdf,png}
 │       ├── fig5_distribution_violin.{pdf,png}
 │       ├── fig6_per_video_deviation.{pdf,png}
-│       └── fig7_summary_table.{pdf,png}
+│       ├── fig7_summary_table.{pdf,png}
+│       └── fig8_roc_curve.{pdf,png}
 └── requirements.txt
 ```
 
@@ -79,6 +82,7 @@ All dependencies are present in the existing `env_vllm` conda env — no
 | pillow | 12.2 | image encode / resize |
 | numpy | 2.2 | pixel metrics |
 | scipy | — | Spearman, ICC ANOVA |
+| scikit-learn | — | ROC curve, AUC |
 | openpyxl | — | read annotation.xlsx |
 | pandas | — | data alignment |
 
@@ -135,7 +139,7 @@ compare_analysis.py
         ▼  results/comparison_metrics.json
         │
         ▼  plot_consistency.py  →  results/figures/
-           7 publication-quality figures (PDF + PNG, 300 dpi)
+           8 publication-quality figures (PDF + PNG, 300 dpi)
 ```
 
 ---
@@ -191,10 +195,8 @@ final_score  =  0.3·semantic + 0.3·logical + 0.4·decision
 | `logical1/2/3` | float | annotator 1/2/3 logical score |
 | `decision1/2/3` | float | annotator 1/2/3 decision score |
 
-The file ships with **placeholder data** (random but realistic scores
-generated with seed 42) so the full pipeline can execute before real
-annotations are collected. Replace the placeholder rows with actual
-annotator judgements and re-run `run_compare.py`.
+The file contains scores from three human annotators. To update, replace
+the rows with new annotator judgements and re-run `run_compare.py`.
 
 ---
 
@@ -258,7 +260,7 @@ RUN_ROBUSTNESS=1 sbatch --export=ALL,HF_TOKEN=$HF_TOKEN slurm/run_eval.sh
 | **3** | `run_evaluation.py` — VLM scoring of all 100 videos |
 | **3b** | `run_robustness.py` — control experiments (if `RUN_ROBUSTNESS=1`) |
 | **4** | `run_compare.py` — Spearman / Kappa / ICC against annotation.xlsx |
-| **5** | `run_plot.py` — generate 7 consistency figures (PDF + PNG) |
+| **5** | `run_plot.py` — generate 8 consistency figures (PDF + PNG) |
 | exit | Kill vLLM child; `EXIT` trap fires on all paths |
 
 USR1 signal (sent 300s before walltime) triggers auto-resubmit via
@@ -309,8 +311,8 @@ USR1 signal (sent 300s before walltime) triggers auto-resubmit via
       "has_signals": true,
       "scene_complexity": 0.113
     },
-    "evaluation_criteria": "3-axis combined prompt v2.0 (English, anti-inflation)",
-    "prompt_version": "combined_v2_en"
+    "evaluation_criteria": "3-axis combined prompt v2.7 (narrow noise + over-accel)",
+    "prompt_version": "combined_v2.7_en"
   }
 ]
 ```
@@ -357,6 +359,19 @@ USR1 signal (sent 300s before walltime) triggers auto-resubmit via
     "spearman_r": 0.587,
     "spearman_p": 0.0,
     "icc21_final_score": 0.536
+  },
+  "binary_classification": {
+    "n": 100,
+    "human_poisoned": 27,
+    "vlm_poisoned": 29,
+    "tp": 21, "fp": 8, "fn": 6, "tn": 65,
+    "accuracy": 0.860,
+    "precision": 0.724,
+    "recall": 0.778,
+    "f1": 0.750,
+    "auc": 0.839,
+    "roc_fpr": ["..."],
+    "roc_tpr": ["..."]
   }
 }
 ```
@@ -412,8 +427,8 @@ Attack level breakdown: Semantic=23, Decision=6, None=71.
 
 Key observations:
 
-1. **Poisoned detection rate closely matches human annotations** (29% vs 30%),
-   with an F1 of 0.746, indicating good binary classification ability.
+1. **Poisoned detection rate closely matches human annotations** (VLM 29% vs human 27%),
+   with F1 = 0.750 and AUC = 0.839, indicating good binary classification ability.
 2. **Semantic dimension** achieves the highest human–VLM ICC (0.510),
    approaching inter-human reliability (0.522), meaning the VLM's
    entity-level assessment is nearly as consistent as human annotators.
@@ -429,7 +444,7 @@ Key observations:
 ### Human–Machine Consistency Figures
 
 Generated by `python scripts/run_plot.py`. Each figure is saved as both
-PDF (vector, for paper submission) and PNG (300 dpi raster, 300 dpi).
+PDF (vector, for paper submission) and PNG (300 dpi raster).
 Style: serif fonts, Nature/IEEE-compatible, tight layout.
 
 #### Fig 1 — Scatter Plot with Regression
