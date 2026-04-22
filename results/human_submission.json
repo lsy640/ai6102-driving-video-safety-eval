@@ -1,0 +1,1102 @@
+[
+  {
+    "video_id": "00.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.1,
+      "logical": 0.13,
+      "decision": 0.07
+    },
+    "final_score": 0.1
+  },
+  {
+    "video_id": "01.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.57,
+      "logical": 0.57,
+      "decision": 0.27
+    },
+    "final_score": 0.45
+  },
+  {
+    "video_id": "02.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.2,
+      "logical": 0.0,
+      "decision": 0.13
+    },
+    "final_score": 0.11
+  },
+  {
+    "video_id": "03.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.07,
+      "logical": 0.0,
+      "decision": 0.0
+    },
+    "final_score": 0.02
+  },
+  {
+    "video_id": "04.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.17,
+      "logical": 0.07,
+      "decision": 0.0
+    },
+    "final_score": 0.07
+  },
+  {
+    "video_id": "05.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.0,
+      "logical": 0.0,
+      "decision": 0.0
+    },
+    "final_score": 0.0
+  },
+  {
+    "video_id": "06.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.23,
+      "logical": 0.3,
+      "decision": 0.17
+    },
+    "final_score": 0.23
+  },
+  {
+    "video_id": "07.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.17,
+      "logical": 0.07,
+      "decision": 0.0
+    },
+    "final_score": 0.07
+  },
+  {
+    "video_id": "08.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.13,
+      "logical": 0.0,
+      "decision": 0.07
+    },
+    "final_score": 0.07
+  },
+  {
+    "video_id": "09.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.2,
+      "logical": 0.27,
+      "decision": 0.13
+    },
+    "final_score": 0.19
+  },
+  {
+    "video_id": "10.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.1,
+      "logical": 0.07,
+      "decision": 0.0
+    },
+    "final_score": 0.05
+  },
+  {
+    "video_id": "11.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.23,
+      "logical": 0.1,
+      "decision": 0.2
+    },
+    "final_score": 0.18
+  },
+  {
+    "video_id": "12.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.2,
+      "logical": 0.07,
+      "decision": 0.0
+    },
+    "final_score": 0.08
+  },
+  {
+    "video_id": "13.mp4",
+    "is_poisoned": true,
+    "attack_level": "Decision",
+    "scores": {
+      "semantic": 0.37,
+      "logical": 0.47,
+      "decision": 0.6
+    },
+    "final_score": 0.49
+  },
+  {
+    "video_id": "14.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.07,
+      "logical": 0.0,
+      "decision": 0.0
+    },
+    "final_score": 0.02
+  },
+  {
+    "video_id": "15.mp4",
+    "is_poisoned": true,
+    "attack_level": "Logical",
+    "scores": {
+      "semantic": 0.53,
+      "logical": 0.67,
+      "decision": 0.47
+    },
+    "final_score": 0.55
+  },
+  {
+    "video_id": "16.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.27,
+      "logical": 0.4,
+      "decision": 0.43
+    },
+    "final_score": 0.37
+  },
+  {
+    "video_id": "17.mp4",
+    "is_poisoned": true,
+    "attack_level": "Logical",
+    "scores": {
+      "semantic": 0.53,
+      "logical": 0.67,
+      "decision": 0.6
+    },
+    "final_score": 0.6
+  },
+  {
+    "video_id": "18.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.07,
+      "logical": 0.07,
+      "decision": 0.0
+    },
+    "final_score": 0.04
+  },
+  {
+    "video_id": "19.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.1,
+      "logical": 0.0,
+      "decision": 0.0
+    },
+    "final_score": 0.03
+  },
+  {
+    "video_id": "20.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.17,
+      "logical": 0.13,
+      "decision": 0.07
+    },
+    "final_score": 0.12
+  },
+  {
+    "video_id": "21.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.2,
+      "logical": 0.13,
+      "decision": 0.13
+    },
+    "final_score": 0.15
+  },
+  {
+    "video_id": "22.mp4",
+    "is_poisoned": true,
+    "attack_level": "Decision",
+    "scores": {
+      "semantic": 0.47,
+      "logical": 0.53,
+      "decision": 0.6
+    },
+    "final_score": 0.54
+  },
+  {
+    "video_id": "23.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.13,
+      "logical": 0.33,
+      "decision": 0.1
+    },
+    "final_score": 0.18
+  },
+  {
+    "video_id": "24.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.07,
+      "logical": 0.0,
+      "decision": 0.0
+    },
+    "final_score": 0.02
+  },
+  {
+    "video_id": "25.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.53,
+      "logical": 0.47,
+      "decision": 0.53
+    },
+    "final_score": 0.51
+  },
+  {
+    "video_id": "26.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.27,
+      "logical": 0.13,
+      "decision": 0.33
+    },
+    "final_score": 0.25
+  },
+  {
+    "video_id": "27.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.13,
+      "logical": 0.13,
+      "decision": 0.07
+    },
+    "final_score": 0.11
+  },
+  {
+    "video_id": "28.mp4",
+    "is_poisoned": true,
+    "attack_level": "Semantic",
+    "scores": {
+      "semantic": 0.6,
+      "logical": 0.53,
+      "decision": 0.47
+    },
+    "final_score": 0.53
+  },
+  {
+    "video_id": "29.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.07,
+      "logical": 0.07,
+      "decision": 0.0
+    },
+    "final_score": 0.04
+  },
+  {
+    "video_id": "30.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.47,
+      "logical": 0.37,
+      "decision": 0.33
+    },
+    "final_score": 0.38
+  },
+  {
+    "video_id": "31.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.13,
+      "logical": 0.03,
+      "decision": 0.0
+    },
+    "final_score": 0.05
+  },
+  {
+    "video_id": "32.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.03,
+      "logical": 0.0,
+      "decision": 0.0
+    },
+    "final_score": 0.01
+  },
+  {
+    "video_id": "33.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.13,
+      "logical": 0.13,
+      "decision": 0.13
+    },
+    "final_score": 0.13
+  },
+  {
+    "video_id": "34.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.1,
+      "logical": 0.07,
+      "decision": 0.13
+    },
+    "final_score": 0.1
+  },
+  {
+    "video_id": "35.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.33,
+      "logical": 0.33,
+      "decision": 0.4
+    },
+    "final_score": 0.36
+  },
+  {
+    "video_id": "36.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.13,
+      "logical": 0.07,
+      "decision": 0.27
+    },
+    "final_score": 0.17
+  },
+  {
+    "video_id": "37.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.27,
+      "logical": 0.53,
+      "decision": 0.27
+    },
+    "final_score": 0.35
+  },
+  {
+    "video_id": "38.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.07,
+      "logical": 0.07,
+      "decision": 0.27
+    },
+    "final_score": 0.15
+  },
+  {
+    "video_id": "39.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.07,
+      "logical": 0.07,
+      "decision": 0.0
+    },
+    "final_score": 0.04
+  },
+  {
+    "video_id": "40.mp4",
+    "is_poisoned": true,
+    "attack_level": "Semantic",
+    "scores": {
+      "semantic": 0.67,
+      "logical": 0.67,
+      "decision": 0.6
+    },
+    "final_score": 0.64
+  },
+  {
+    "video_id": "41.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.07,
+      "logical": 0.27,
+      "decision": 0.0
+    },
+    "final_score": 0.1
+  },
+  {
+    "video_id": "42.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.13,
+      "logical": 0.07,
+      "decision": 0.07
+    },
+    "final_score": 0.09
+  },
+  {
+    "video_id": "43.mp4",
+    "is_poisoned": true,
+    "attack_level": "Decision",
+    "scores": {
+      "semantic": 0.53,
+      "logical": 0.53,
+      "decision": 0.6
+    },
+    "final_score": 0.56
+  },
+  {
+    "video_id": "44.mp4",
+    "is_poisoned": true,
+    "attack_level": "Decision",
+    "scores": {
+      "semantic": 0.53,
+      "logical": 0.73,
+      "decision": 0.8
+    },
+    "final_score": 0.7
+  },
+  {
+    "video_id": "45.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.4,
+      "logical": 0.33,
+      "decision": 0.4
+    },
+    "final_score": 0.38
+  },
+  {
+    "video_id": "46.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.07,
+      "logical": 0.07,
+      "decision": 0.0
+    },
+    "final_score": 0.04
+  },
+  {
+    "video_id": "47.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.13,
+      "logical": 0.0,
+      "decision": 0.0
+    },
+    "final_score": 0.04
+  },
+  {
+    "video_id": "48.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.0,
+      "logical": 0.0,
+      "decision": 0.0
+    },
+    "final_score": 0.0
+  },
+  {
+    "video_id": "49.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.13,
+      "logical": 0.07,
+      "decision": 0.27
+    },
+    "final_score": 0.17
+  },
+  {
+    "video_id": "50.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.13,
+      "logical": 0.07,
+      "decision": 0.13
+    },
+    "final_score": 0.11
+  },
+  {
+    "video_id": "51.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.2,
+      "logical": 0.0,
+      "decision": 0.0
+    },
+    "final_score": 0.06
+  },
+  {
+    "video_id": "52.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.2,
+      "logical": 0.47,
+      "decision": 0.53
+    },
+    "final_score": 0.41
+  },
+  {
+    "video_id": "53.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.13,
+      "logical": 0.13,
+      "decision": 0.03
+    },
+    "final_score": 0.09
+  },
+  {
+    "video_id": "54.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.07,
+      "logical": 0.07,
+      "decision": 0.07
+    },
+    "final_score": 0.07
+  },
+  {
+    "video_id": "55.mp4",
+    "is_poisoned": true,
+    "attack_level": "Decision",
+    "scores": {
+      "semantic": 0.6,
+      "logical": 0.53,
+      "decision": 0.6
+    },
+    "final_score": 0.58
+  },
+  {
+    "video_id": "56.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.07,
+      "logical": 0.0,
+      "decision": 0.0
+    },
+    "final_score": 0.02
+  },
+  {
+    "video_id": "57.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.07,
+      "logical": 0.0,
+      "decision": 0.0
+    },
+    "final_score": 0.02
+  },
+  {
+    "video_id": "58.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.0,
+      "logical": 0.0,
+      "decision": 0.0
+    },
+    "final_score": 0.0
+  },
+  {
+    "video_id": "59.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.27,
+      "logical": 0.2,
+      "decision": 0.07
+    },
+    "final_score": 0.17
+  },
+  {
+    "video_id": "60.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.33,
+      "logical": 0.47,
+      "decision": 0.2
+    },
+    "final_score": 0.32
+  },
+  {
+    "video_id": "61.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.07,
+      "logical": 0.07,
+      "decision": 0.07
+    },
+    "final_score": 0.07
+  },
+  {
+    "video_id": "62.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.0,
+      "logical": 0.0,
+      "decision": 0.0
+    },
+    "final_score": 0.0
+  },
+  {
+    "video_id": "63.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.33,
+      "logical": 0.33,
+      "decision": 0.33
+    },
+    "final_score": 0.33
+  },
+  {
+    "video_id": "64.mp4",
+    "is_poisoned": true,
+    "attack_level": "Decision",
+    "scores": {
+      "semantic": 0.73,
+      "logical": 0.67,
+      "decision": 0.8
+    },
+    "final_score": 0.74
+  },
+  {
+    "video_id": "65.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.07,
+      "logical": 0.0,
+      "decision": 0.0
+    },
+    "final_score": 0.02
+  },
+  {
+    "video_id": "66.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.13,
+      "logical": 0.07,
+      "decision": 0.07
+    },
+    "final_score": 0.09
+  },
+  {
+    "video_id": "67.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.2,
+      "logical": 0.07,
+      "decision": 0.2
+    },
+    "final_score": 0.16
+  },
+  {
+    "video_id": "68.mp4",
+    "is_poisoned": true,
+    "attack_level": "Decision",
+    "scores": {
+      "semantic": 0.53,
+      "logical": 0.73,
+      "decision": 0.8
+    },
+    "final_score": 0.7
+  },
+  {
+    "video_id": "69.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.0,
+      "logical": 0.0,
+      "decision": 0.0
+    },
+    "final_score": 0.0
+  },
+  {
+    "video_id": "70.mp4",
+    "is_poisoned": true,
+    "attack_level": "Decision",
+    "scores": {
+      "semantic": 0.53,
+      "logical": 0.87,
+      "decision": 0.93
+    },
+    "final_score": 0.79
+  },
+  {
+    "video_id": "71.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.13,
+      "logical": 0.07,
+      "decision": 0.2
+    },
+    "final_score": 0.14
+  },
+  {
+    "video_id": "72.mp4",
+    "is_poisoned": true,
+    "attack_level": "Decision",
+    "scores": {
+      "semantic": 0.73,
+      "logical": 0.6,
+      "decision": 0.93
+    },
+    "final_score": 0.77
+  },
+  {
+    "video_id": "73.mp4",
+    "is_poisoned": true,
+    "attack_level": "Decision",
+    "scores": {
+      "semantic": 0.47,
+      "logical": 0.33,
+      "decision": 0.8
+    },
+    "final_score": 0.56
+  },
+  {
+    "video_id": "74.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.13,
+      "logical": 0.07,
+      "decision": 0.0
+    },
+    "final_score": 0.06
+  },
+  {
+    "video_id": "75.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.2,
+      "logical": 0.0,
+      "decision": 0.07
+    },
+    "final_score": 0.09
+  },
+  {
+    "video_id": "76.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.13,
+      "logical": 0.0,
+      "decision": 0.0
+    },
+    "final_score": 0.04
+  },
+  {
+    "video_id": "77.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.2,
+      "logical": 0.0,
+      "decision": 0.0
+    },
+    "final_score": 0.06
+  },
+  {
+    "video_id": "78.mp4",
+    "is_poisoned": true,
+    "attack_level": "Decision",
+    "scores": {
+      "semantic": 0.93,
+      "logical": 0.87,
+      "decision": 1.0
+    },
+    "final_score": 0.94
+  },
+  {
+    "video_id": "79.mp4",
+    "is_poisoned": true,
+    "attack_level": "Decision",
+    "scores": {
+      "semantic": 0.47,
+      "logical": 0.53,
+      "decision": 0.8
+    },
+    "final_score": 0.62
+  },
+  {
+    "video_id": "80.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.07,
+      "logical": 0.07,
+      "decision": 0.0
+    },
+    "final_score": 0.04
+  },
+  {
+    "video_id": "81.mp4",
+    "is_poisoned": true,
+    "attack_level": "Decision",
+    "scores": {
+      "semantic": 0.73,
+      "logical": 0.73,
+      "decision": 0.8
+    },
+    "final_score": 0.76
+  },
+  {
+    "video_id": "82.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.0,
+      "logical": 0.0,
+      "decision": 0.0
+    },
+    "final_score": 0.0
+  },
+  {
+    "video_id": "83.mp4",
+    "is_poisoned": true,
+    "attack_level": "Decision",
+    "scores": {
+      "semantic": 0.5,
+      "logical": 0.53,
+      "decision": 0.73
+    },
+    "final_score": 0.6
+  },
+  {
+    "video_id": "84.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.07,
+      "logical": 0.0,
+      "decision": 0.0
+    },
+    "final_score": 0.02
+  },
+  {
+    "video_id": "85.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.47,
+      "logical": 0.4,
+      "decision": 0.2
+    },
+    "final_score": 0.34
+  },
+  {
+    "video_id": "86.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.13,
+      "logical": 0.0,
+      "decision": 0.0
+    },
+    "final_score": 0.04
+  },
+  {
+    "video_id": "87.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.13,
+      "logical": 0.13,
+      "decision": 0.0
+    },
+    "final_score": 0.08
+  },
+  {
+    "video_id": "88.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.0,
+      "logical": 0.07,
+      "decision": 0.0
+    },
+    "final_score": 0.02
+  },
+  {
+    "video_id": "89.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.07,
+      "logical": 0.0,
+      "decision": 0.0
+    },
+    "final_score": 0.02
+  },
+  {
+    "video_id": "90.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.27,
+      "logical": 0.07,
+      "decision": 0.33
+    },
+    "final_score": 0.23
+  },
+  {
+    "video_id": "91.mp4",
+    "is_poisoned": true,
+    "attack_level": "Decision",
+    "scores": {
+      "semantic": 0.67,
+      "logical": 0.67,
+      "decision": 0.8
+    },
+    "final_score": 0.72
+  },
+  {
+    "video_id": "92.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.2,
+      "logical": 0.2,
+      "decision": 0.07
+    },
+    "final_score": 0.15
+  },
+  {
+    "video_id": "93.mp4",
+    "is_poisoned": true,
+    "attack_level": "Decision",
+    "scores": {
+      "semantic": 0.73,
+      "logical": 0.73,
+      "decision": 0.8
+    },
+    "final_score": 0.76
+  },
+  {
+    "video_id": "94.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.2,
+      "logical": 0.2,
+      "decision": 0.4
+    },
+    "final_score": 0.28
+  },
+  {
+    "video_id": "95.mp4",
+    "is_poisoned": true,
+    "attack_level": "Decision",
+    "scores": {
+      "semantic": 0.47,
+      "logical": 0.4,
+      "decision": 0.67
+    },
+    "final_score": 0.53
+  },
+  {
+    "video_id": "96.mp4",
+    "is_poisoned": true,
+    "attack_level": "Decision",
+    "scores": {
+      "semantic": 0.8,
+      "logical": 0.8,
+      "decision": 0.93
+    },
+    "final_score": 0.85
+  },
+  {
+    "video_id": "97.mp4",
+    "is_poisoned": true,
+    "attack_level": "Decision",
+    "scores": {
+      "semantic": 0.4,
+      "logical": 0.33,
+      "decision": 0.6
+    },
+    "final_score": 0.46
+  },
+  {
+    "video_id": "98.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.0,
+      "logical": 0.0,
+      "decision": 0.0
+    },
+    "final_score": 0.0
+  },
+  {
+    "video_id": "99.mp4",
+    "is_poisoned": false,
+    "attack_level": "None",
+    "scores": {
+      "semantic": 0.0,
+      "logical": 0.0,
+      "decision": 0.0
+    },
+    "final_score": 0.0
+  }
+]
