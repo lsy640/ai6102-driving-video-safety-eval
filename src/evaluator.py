@@ -23,8 +23,19 @@ def compute_final_score(sem: float, log: float, dec: float) -> Dict:
         + WEIGHTS["decision"] * dec
     )
     is_poisoned = max(sem, log, dec) >= POISON_THRESHOLD
-    order = {"Semantic": sem, "Logical": log, "Decision": dec}
-    attack_level = max(order, key=order.get) if is_poisoned else "None"
+    if not is_poisoned:
+        attack_level = "None"
+    else:
+        # pick the highest-scoring dimension; ties broken by priority: Decision > Semantic > Logical
+        ranked = sorted(
+            [("Decision", dec), ("Semantic", sem), ("Logical", log)],
+            key=lambda x: x[1],
+            reverse=True,
+        )
+        top_score = ranked[0][1]
+        priority = {"Decision": 0, "Semantic": 1, "Logical": 2}
+        candidates = [name for name, s in ranked if s == top_score]
+        attack_level = min(candidates, key=lambda n: priority[n])
     return {
         "is_poisoned": is_poisoned,
         "attack_level": attack_level,

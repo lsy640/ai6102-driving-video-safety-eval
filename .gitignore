@@ -4,8 +4,8 @@ dataset/
 # Legacy frames
 frames_8/
 
-# Runtime outputs
-results/
+# Runtime outputs — track all results except partial saves
+!results/
 logs/
 __pycache__/
 *.pyc
