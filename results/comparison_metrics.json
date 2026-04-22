@@ -37,5 +37,33 @@
     "spearman_r": 0.587,
     "spearman_p": 0.0,
     "icc21_final_score": 0.536
+  },
+  "binary_classification": {
+    "n": 100,
+    "human_poisoned": 27,
+    "vlm_poisoned": 29,
+    "tp": 21,
+    "fp": 8,
+    "fn": 6,
+    "tn": 65,
+    "accuracy": 0.86,
+    "precision": 0.724,
+    "recall": 0.778,
+    "f1": 0.75,
+    "auc": 0.839,
+    "roc_fpr": [
+      0.0,
+      0.0,
+      0.0959,
+      0.1096,
+      1.0
+    ],
+    "roc_tpr": [
+      0.0,
+      0.0741,
+      0.7037,
+      0.7778,
+      1.0
+    ]
   }
 }

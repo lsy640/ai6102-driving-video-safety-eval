@@ -562,6 +562,52 @@ def _recreate_table(metrics):
     return fig
 
 
+# ── Fig 8: ROC curve ────────────────────────────────────────────────────────
+
+def _plot_roc_impl(metrics: Dict):
+    bc = metrics["binary_classification"]
+    fpr = np.array(bc["roc_fpr"])
+    tpr = np.array(bc["roc_tpr"])
+    auc_val = bc["auc"]
+
+    fig, ax = plt.subplots(figsize=(4.5, 4.5))
+    ax.plot(fpr, tpr, color="#2166ac", linewidth=2,
+            label=f"VLM (AUC = {auc_val:.3f})")
+    ax.plot([0, 1], [0, 1], "k--", linewidth=0.8, alpha=0.5, label="Random")
+    ax.fill_between(fpr, tpr, alpha=0.08, color="#2166ac")
+
+    ax.set_xlabel("False Positive Rate")
+    ax.set_ylabel("True Positive Rate")
+    ax.set_title("ROC Curve — Poisoned Video Detection")
+    ax.set_xlim(-0.02, 1.02)
+    ax.set_ylim(-0.02, 1.02)
+    ax.set_aspect("equal")
+    ax.legend(loc="lower right", fontsize=9, framealpha=0.9)
+
+    # annotate classification metrics
+    acc = bc["accuracy"]
+    prec = bc["precision"]
+    rec = bc["recall"]
+    f1 = bc["f1"]
+    text = (f"Accuracy = {acc:.3f}\n"
+            f"Precision = {prec:.3f}\n"
+            f"Recall = {rec:.3f}\n"
+            f"F1 = {f1:.3f}")
+    ax.text(0.55, 0.25, text, transform=ax.transAxes, fontsize=8,
+            verticalalignment="top",
+            bbox=dict(boxstyle="round,pad=0.4", fc="white", ec="gray", alpha=0.9))
+
+    fig.tight_layout()
+    return fig
+
+
+def plot_roc_curve(metrics: Dict, out_dir: str):
+    fig = _plot_roc_impl(metrics)
+    _save(fig, os.path.join(out_dir, "fig8_roc_curve.pdf"))
+    fig2 = _plot_roc_impl(metrics)
+    _save(fig2, os.path.join(out_dir, "fig8_roc_curve.png"))
+
+
 # ── Public entry point ────────────────────────────────────────────────────────
 
 def generate_all_figures(
@@ -587,5 +633,8 @@ def generate_all_figures(
     plot_score_distribution(data, out_dir)
     plot_per_video_deviation(merged, data, out_dir)
     plot_summary_table(metrics, out_dir)
+    if "binary_classification" in metrics:
+        plot_roc_curve(metrics, out_dir)
 
-    print(f"\nAll {7} figures saved to {out_dir}/")
+    n_figs = 8 if "binary_classification" in metrics else 7
+    print(f"\nAll {n_figs} figures saved to {out_dir}/")
