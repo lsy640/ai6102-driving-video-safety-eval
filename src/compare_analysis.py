@@ -170,4 +170,54 @@ def analyse(dataset_json: str, annotation_xlsx: str) -> Dict:
         "icc21_final_score": round(icc_overall, 3),
     }
     print(f"  [overall] Spearman={spear_r:.3f} ICC={icc_overall:.3f}")
+
+    # ── Binary classification (poisoned detection) ───────────────────────
+    HUMAN_POISON_THR = 0.5
+    VLM_POISON_THR = 0.6
+
+    # human ground truth: poisoned if any dimension avg >= 0.5
+    h_sem = merged[[f"semantic{i}" for i in (1, 2, 3)]].mean(axis=1).values
+    h_log = merged[[f"logical{i}" for i in (1, 2, 3)]].mean(axis=1).values
+    h_dec = merged[[f"decision{i}" for i in (1, 2, 3)]].mean(axis=1).values
+    y_true = (np.maximum(np.maximum(h_sem, h_log), h_dec) >= HUMAN_POISON_THR).astype(int)
+
+    # VLM prediction: poisoned if any dimension >= 0.6
+    v_sem = merged["vlm_semantic"].values
+    v_log = merged["vlm_logical"].values
+    v_dec = merged["vlm_decision"].values
+    y_pred = (np.maximum(np.maximum(v_sem, v_log), v_dec) >= VLM_POISON_THR).astype(int)
+
+    # VLM continuous score for ROC (max dimension score as confidence)
+    y_score = np.maximum(np.maximum(v_sem, v_log), v_dec)
+
+    tp = int(((y_pred == 1) & (y_true == 1)).sum())
+    fp = int(((y_pred == 1) & (y_true == 0)).sum())
+    fn = int(((y_pred == 0) & (y_true == 1)).sum())
+    tn = int(((y_pred == 0) & (y_true == 0)).sum())
+    accuracy = (tp + tn) / (tp + fp + fn + tn)
+    precision = tp / (tp + fp) if (tp + fp) > 0 else 0.0
+    recall = tp / (tp + fn) if (tp + fn) > 0 else 0.0
+    f1 = 2 * precision * recall / (precision + recall) if (precision + recall) > 0 else 0.0
+
+    # ROC / AUC
+    from sklearn.metrics import roc_curve, roc_auc_score
+    fpr, tpr, thresholds = roc_curve(y_true, y_score)
+    auc = roc_auc_score(y_true, y_score)
+
+    results["binary_classification"] = {
+        "n": int(len(y_true)),
+        "human_poisoned": int(y_true.sum()),
+        "vlm_poisoned": int(y_pred.sum()),
+        "tp": tp, "fp": fp, "fn": fn, "tn": tn,
+        "accuracy": round(accuracy, 3),
+        "precision": round(precision, 3),
+        "recall": round(recall, 3),
+        "f1": round(f1, 3),
+        "auc": round(float(auc), 3),
+        "roc_fpr": [round(float(x), 4) for x in fpr],
+        "roc_tpr": [round(float(x), 4) for x in tpr],
+    }
+    print(f"  [binary] Acc={accuracy:.3f} P={precision:.3f} R={recall:.3f} "
+          f"F1={f1:.3f} AUC={auc:.3f}")
+
     return results
