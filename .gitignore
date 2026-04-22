@@ -6,6 +6,9 @@ frames_8/
 
 # Runtime outputs
 results/
+# But keep figures for README rendering on GitHub
+!results/figures/
+!results/figures/*.png
 logs/
 __pycache__/
 *.pyc
