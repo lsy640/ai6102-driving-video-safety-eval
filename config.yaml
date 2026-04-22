@@ -54,7 +54,7 @@ preprocessing:
 
 # ── robustness controls ────────────────────────────────────────
 robustness:
-  num_videos: 10
+  num_videos: 20
   seed: 42
   noise_frame_size: [1344, 130]
 
