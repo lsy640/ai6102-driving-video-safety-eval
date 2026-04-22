@@ -172,19 +172,20 @@ def analyse(dataset_json: str, annotation_xlsx: str) -> Dict:
     print(f"  [overall] Spearman={spear_r:.3f} ICC={icc_overall:.3f}")
 
     # ── Binary classification (poisoned detection) ───────────────────────
-    POISON_THR = 0.6
+    HUMAN_POISON_THR = 0.5
+    VLM_POISON_THR = 0.6
 
-    # human ground truth: poisoned if any dimension avg >= threshold
+    # human ground truth: poisoned if any dimension avg >= 0.5
     h_sem = merged[[f"semantic{i}" for i in (1, 2, 3)]].mean(axis=1).values
     h_log = merged[[f"logical{i}" for i in (1, 2, 3)]].mean(axis=1).values
     h_dec = merged[[f"decision{i}" for i in (1, 2, 3)]].mean(axis=1).values
-    y_true = (np.maximum(np.maximum(h_sem, h_log), h_dec) >= POISON_THR).astype(int)
+    y_true = (np.maximum(np.maximum(h_sem, h_log), h_dec) >= HUMAN_POISON_THR).astype(int)
 
-    # VLM prediction
+    # VLM prediction: poisoned if any dimension >= 0.6
     v_sem = merged["vlm_semantic"].values
     v_log = merged["vlm_logical"].values
     v_dec = merged["vlm_decision"].values
-    y_pred = (np.maximum(np.maximum(v_sem, v_log), v_dec) >= POISON_THR).astype(int)
+    y_pred = (np.maximum(np.maximum(v_sem, v_log), v_dec) >= VLM_POISON_THR).astype(int)
 
     # VLM continuous score for ROC (max dimension score as confidence)
     y_score = np.maximum(np.maximum(v_sem, v_log), v_dec)

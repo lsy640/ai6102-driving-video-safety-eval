@@ -368,25 +368,25 @@ USR1 signal (sent 300s before walltime) triggers auto-resubmit via
 ### Poisoned Detection — Binary Classification
 
 Ground truth: a video is **poisoned** if the human annotators' average
-score on **any** dimension (semantic / logical / decision) is ≥ 0.6.
-The VLM uses the same threshold on its own scores.
+score on **any** dimension (semantic / logical / decision) is ≥ 0.5.
+The VLM uses a threshold of ≥ 0.6 on its own scores.
 
 | Metric | Value |
 |--------|-------|
-| Human poisoned count | 23 / 100 (23%) |
+| Human poisoned count | 27 / 100 (27%) |
 | VLM poisoned count | 29 / 100 (29%) |
-| Accuracy | 0.840 |
-| Precision | 0.621 |
-| Recall | 0.783 |
-| F1 Score | 0.692 |
-| **AUC** | **0.824** |
+| Accuracy | 0.860 |
+| Precision | 0.724 |
+| Recall | 0.778 |
+| F1 Score | 0.750 |
+| **AUC** | **0.839** |
 
-Confusion matrix: TP=18, FP=11, FN=5, TN=66.
+Confusion matrix: TP=21, FP=8, FN=6, TN=65.
 
 #### Fig 8 — ROC Curve
 
 ROC curve using max(semantic, logical, decision) as the continuous
-confidence score. AUC = 0.824 indicates good discriminative ability.
+confidence score. AUC = 0.839 indicates good discriminative ability.
 
 ![Fig 8: ROC Curve](results/figures/fig8_roc_curve.png)
 

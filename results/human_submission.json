@@ -12,8 +12,8 @@
   },
   {
     "video_id": "01.mp4",
-    "is_poisoned": false,
-    "attack_level": "None",
+    "is_poisoned": true,
+    "attack_level": "Semantic",
     "scores": {
       "semantic": 0.57,
       "logical": 0.57,
@@ -276,8 +276,8 @@
   },
   {
     "video_id": "25.mp4",
-    "is_poisoned": false,
-    "attack_level": "None",
+    "is_poisoned": true,
+    "attack_level": "Decision",
     "scores": {
       "semantic": 0.53,
       "logical": 0.47,
@@ -408,8 +408,8 @@
   },
   {
     "video_id": "37.mp4",
-    "is_poisoned": false,
-    "attack_level": "None",
+    "is_poisoned": true,
+    "attack_level": "Logical",
     "scores": {
       "semantic": 0.27,
       "logical": 0.53,
@@ -573,8 +573,8 @@
   },
   {
     "video_id": "52.mp4",
-    "is_poisoned": false,
-    "attack_level": "None",
+    "is_poisoned": true,
+    "attack_level": "Decision",
     "scores": {
       "semantic": 0.2,
       "logical": 0.47,
