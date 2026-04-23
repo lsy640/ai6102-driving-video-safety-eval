@@ -40,8 +40,9 @@ contain physically-conditioned attacks at the semantic, logical, or
 decision level. The judge is Qwen3.6-35B-A3B-FP8 served with vLLM on
 a single L40S; the human reference is provided by three annotators
 following the same six-level rubric. On binary poisoned-vs-clean
-classification the model reaches F1 0.746 and matches the official
-30\% prior almost exactly. The per-axis ICC$(2,1)$ is more nuanced:
+classification the model reaches F1 0.750 and AUC 0.839, with a VLM
+poisoned count of 29 against a human reference of 27.
+The per-axis ICC$(2,1)$ is more nuanced:
 on Semantic the model reaches 0.510 against an inter-human ceiling
 of 0.522, while on Logical (0.322) and Decision (0.382) it falls
 well below the human-to-human values of 0.613 and 0.649.
@@ -184,6 +185,12 @@ in code so that an inconsistent model output remains scoreable:
 \texttt{attack\_level} is the highest-scoring axis with ties broken
 in the order Decision $>$ Semantic $>$ Logical;
 $\texttt{final\_score}=0.3\!\cdot\!\text{sem}+0.3\!\cdot\!\text{log}+0.4\!\cdot\!\text{dec}$.
+For the binary evaluation in Section~5.2 the human ground truth uses a
+threshold of $0.5$ on the per-dimension annotator mean while the VLM
+prediction retains $0.6$. The asymmetry reflects a reliability
+difference: the human six-level scale is discriminative at $0.5$,
+whereas the VLM's conservative prompt produces a natural gap around
+$0.6$.
 
 \subsection{Inference Configuration}
 Both model weights and the KV cache are stored in FP8 (\texttt{e4m3}).
@@ -235,9 +242,9 @@ pattern: 77--81 of the 100 videos receive a score of exactly 0.0 on
 each axis, with a smaller cluster at 0.6 or above. Human annotators
 use the intermediate values 0.2 and 0.4 more frequently, producing
 higher per-axis means despite broad agreement on which clips are
-clean. The two sets of labels classify 29 and 30 videos as poisoned
-respectively, indicating near-identical performance on the binary
-task.
+clean. The VLM labels 29 videos as poisoned and the human reference
+(any-dimension mean $\ge\!0.5$) labels 27, within 2 of the 30\%
+official prior.
 
 \begin{table}[t]
 \centering
@@ -258,13 +265,17 @@ of 100.}
 \end{table}
 
 \subsection{Binary Poisoned Detection}
-At the official $\ge\!0.6$ threshold the confusion matrix is
-TP $=22$, FP $=7$, FN $=8$, TN $=63$, yielding precision 0.759,
-recall 0.733, and F1 0.746 (Figure~\ref{fig:cm}). The eight false
-negatives are dominated by Logical-axis cases in which the VLM
-scored below 0.6 because no single object was clearly missing in any
-individual frame, despite high cumulative drift across the 8-frame
-sequence.
+Using a human threshold of $0.5$ and a VLM threshold of $0.6$, the
+confusion matrix is TP $=21$, FP $=8$, FN $=6$, TN $=65$, yielding
+accuracy 0.860, precision 0.724, recall 0.778, and F1 0.750
+(Figure~\ref{fig:cm}). Treating $\max(\text{sem},\text{log},\text{dec})$
+as a continuous confidence score gives an ROC AUC of 0.839
+(Figure~\ref{fig:roc}), which is threshold-independent and therefore
+a cleaner summary of the judge's discriminative ability than any
+single operating point. The six false negatives are dominated by
+Logical-axis cases in which the VLM scored below 0.6 because no single
+object was clearly missing in any individual frame, despite high
+cumulative drift across the 8-frame sequence.
 
 \subsection{Per-axis Agreement}
 Table~\ref{tab:agree} gives the three statistics per axis.
@@ -324,13 +335,22 @@ visible at a glance.
 \begin{figure}[t]
 \centering
 \includegraphics[width=\linewidth]{../results/figures/fig3_confusion_matrix.png}
-\caption{Confusion matrix for binary poisoned detection at the
-$\ge\!0.6$ threshold.}
+\caption{Confusion matrix for binary poisoned detection
+(human $\ge\!0.5$, VLM $\ge\!0.6$).}
 \label{fig:cm}
 \end{figure}
 
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.9\linewidth]{../results/figures/fig8_roc_curve.png}
+\caption{ROC curve on 100 videos, with
+$\max(\text{sem},\text{log},\text{dec})$ as the continuous
+VLM confidence. AUC $=0.839$.}
+\label{fig:roc}
+\end{figure}
+
 \subsection{Failure Modes}
-Manual inspection of the eight false negatives and a sample of false
+Manual inspection of the six false negatives and a sample of false
 positives identified three recurring patterns. \emph{Pedestrian
 ghosting} (clips 44, 63, 68): the generator replaces a standing or
 crossing pedestrian with a dark blur whose silhouette is no longer
@@ -356,23 +376,37 @@ per-frame errors, and the prompt does not explicitly require frame-by-frame
 temporal reasoning.
 
 \subsection{Robustness Controls}
-The pipeline was re-run three times on a 10-video subset under
-modified input conditions. Removing the images and supplying only
-the annotation summary and drift percentage returned near-zero
-scores on every axis, consistent with the prompt's default-to-zero
-rule when visual evidence is absent. Replacing every frame with
-uniform random noise produced elevated Logical scores and low
-Semantic scores, as expected from the absence of recognisable
-entities and the lack of temporal coherence. Replacing the bottom
-strip with the top strip --- a perfect reconstruction --- yielded
-all-zero outputs with no false positives.
+The pipeline was re-run three times on a 10-video subset
+(\texttt{seed}$=\!42$) under modified visual inputs, with the textual
+annotation summary and drift percentage held at their true values in
+every condition. In \emph{identical} the real top strip was supplied
+in place of the generated bottom strip, so that both image slots
+contain the same content. In \emph{noise} the generated frames were
+replaced by uniform random noise images. In \emph{text\_only} both
+slots were replaced by black images, collapsing the visual channel to
+a constant while preserving the prompt format.
+
+All three conditions returned $0.0$ on every axis for all ten videos,
+giving a zero false-positive rate under control inputs. The model's
+reasoning field in the noise condition explicitly attributes the
+large pixel deviation to ``rendering noise, not entity-level
+changes'', indicating that the judgement is conditioned on visual
+content rather than on the pixel-difference statistics that are
+always available in the prompt. The $n\!=\!10$ subset is sufficient
+to rule out the coarse shortcuts audited by
+DriveBench~\citep{xie2024drivebench} but too small to estimate a
+control-condition false-positive rate with a confidence interval; a
+full 100-video robustness sweep is left to future work.
 
 \subsection{Discussion}
 The Semantic ICC of 0.510 sits within one standard error of the
 inter-human ceiling of 0.522, indicating that the VLM has reached
 the noise floor for entity-level scoring; further prompt tuning on
 this axis is bounded by human variability rather than model
-capability. The under-scoring on Logical and Decision is primarily
+capability. The zero false-positive rate across all three robustness
+controls supports the interpretation that this agreement is driven
+by visual grounding rather than by the text-channel statistics that
+a prompt-shortcut judge could also exploit. The under-scoring on Logical and Decision is primarily
 a prompt artefact: the noise-calibration clause introduced to
 suppress the 0.2 floor effect produced systematically conservative
 scores. Relaxing this clause for the Decision axis, where the cost
@@ -384,9 +418,9 @@ held-out human subset could plausibly recover the intermediate
 values.
 
 \section{Conclusion}
-The proposed framework attains F1 0.746 on binary poisoned detection
-and matches inter-human reliability on the Semantic axis, while
-under-scoring on Logical and Decision. The under-scoring is
+The proposed framework attains F1 0.750 and AUC 0.839 on binary
+poisoned detection and matches inter-human reliability on the
+Semantic axis, while under-scoring on Logical and Decision. The under-scoring is
 attributable to the noise-calibration clause in the prompt and to
 the absence of explicit per-frame temporal narration. A notable
 empirical observation is the magnitude of variance contributed by
