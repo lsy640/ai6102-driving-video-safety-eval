@@ -214,10 +214,12 @@ hand-picked clips blind, then resolved interpretation differences on
 the borderline anchors. Inter-human ICC on a pilot prior to the
 meeting was below 0.4; following calibration it stabilised in the
 0.5--0.65 range reported in Section~5. Annotation was performed on
-the per-video frame grids in \texttt{frames\_8/} rather than on the
-original MP4 files; sequential viewing of the eight PNGs reproduces
+the per-video internally exported 8-frame sequences (one PNG per
+frame) rather than on the original MP4 files; sequential viewing of
+the eight PNGs reproduces
 the 4 FPS animation while permitting pause on a single frame for
-detailed inspection. Scores were recorded in \texttt{annotation.xlsx}
+detailed inspection. Scores were recorded in
+\texttt{human\_evaluate/annotation.xlsx}
 with one row per \texttt{video\_index} and three columns
 $(\texttt{semantic\_i}, \texttt{logical\_i}, \texttt{decision\_i})$
 per annotator $i\!\in\!\{1,2,3\}$.

@@ -64,6 +64,19 @@ VLM/
 └── requirements.txt
 ```
 
+### Dataset path mapping
+
+The public repository uses `dataset/` as the canonical video directory.
+The course originally distributed the same 100 clips under
+`6102dataset/mixed_group_16/`. To reproduce without copying:
+
+```bash
+ln -s /path/to/6102dataset/mixed_group_16 dataset
+```
+
+All scripts and `config.yaml` reference `dataset/` only — no path
+rewrites needed after the symlink.
+
 ---
 
 ## Environment
