@@ -570,32 +570,30 @@ def _plot_roc_impl(metrics: Dict):
     tpr = np.array(bc["roc_tpr"])
     auc_val = bc["auc"]
 
-    fig, ax = plt.subplots(figsize=(4.5, 4.5))
-    ax.plot(fpr, tpr, color="#2166ac", linewidth=2,
+    fig, ax = plt.subplots(figsize=(3.2, 3.2))
+    ax.plot(fpr, tpr, color="#2166ac", linewidth=1.8,
             label=f"VLM (AUC = {auc_val:.3f})")
-    ax.plot([0, 1], [0, 1], "k--", linewidth=0.8, alpha=0.5, label="Random")
+    ax.plot([0, 1], [0, 1], "k--", linewidth=0.7, alpha=0.5, label="Random")
     ax.fill_between(fpr, tpr, alpha=0.08, color="#2166ac")
 
     ax.set_xlabel("False Positive Rate")
     ax.set_ylabel("True Positive Rate")
-    ax.set_title("ROC Curve — Poisoned Video Detection")
+    ax.set_title("ROC Curve — Poisoned Video Detection", fontsize=9)
     ax.set_xlim(-0.02, 1.02)
     ax.set_ylim(-0.02, 1.02)
     ax.set_aspect("equal")
-    ax.legend(loc="lower right", fontsize=9, framealpha=0.9)
+    ax.legend(loc="lower right", fontsize=7, framealpha=0.9)
 
-    # annotate classification metrics
     acc = bc["accuracy"]
     prec = bc["precision"]
     rec = bc["recall"]
     f1 = bc["f1"]
-    text = (f"Accuracy = {acc:.3f}\n"
-            f"Precision = {prec:.3f}\n"
-            f"Recall = {rec:.3f}\n"
-            f"F1 = {f1:.3f}")
-    ax.text(0.55, 0.25, text, transform=ax.transAxes, fontsize=8,
-            verticalalignment="top",
-            bbox=dict(boxstyle="round,pad=0.4", fc="white", ec="gray", alpha=0.9))
+    text = (f"Acc={acc:.3f}  P={prec:.3f}\n"
+            f"R={rec:.3f}  F1={f1:.3f}")
+    ax.text(0.97, 0.45, text, transform=ax.transAxes, fontsize=7,
+            ha="right", va="top",
+            bbox=dict(boxstyle="round,pad=0.3", fc="white", ec="gray",
+                      alpha=0.9, linewidth=0.5))
 
     fig.tight_layout()
     return fig

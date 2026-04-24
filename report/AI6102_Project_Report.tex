@@ -275,7 +275,7 @@ frame, causing the VLM to score below 0.6.
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.9\linewidth]{./results/figures/fig8_roc_curve.pdf}
+\includegraphics[width=0.7\linewidth]{./results/figures/fig8_roc_curve.pdf}
 \caption{ROC curve on 100 videos, with
 $\max(\text{sem},\text{log},\text{dec})$ as the continuous
 VLM confidence. AUC $=0.839$.}
@@ -293,9 +293,10 @@ which clips are clean.
 \begin{table}[t]
 \centering
 \small
+\setlength{\tabcolsep}{4pt}
 \begin{tabular}{lcccc}
 \toprule
-Axis & VLM mean & Human mean & VLM 0-count & VLM $\ge\!0.6$ \\
+Axis & VLM $\mu$ & Human $\mu$ & \#Zero & $\ge\!0.6$ \\
 \midrule
 Semantic & 0.178 & 0.253 & 77 & 23 \\
 Logical  & 0.064 & 0.233 & 81 & 3  \\
@@ -303,8 +304,8 @@ Decision & 0.084 & 0.249 & 79 & 6  \\
 Final    & 0.106 & ---   & 71 & --- \\
 \bottomrule
 \end{tabular}
-\caption{Marginal score distributions on 100 videos. Counts are out
-of 100.}
+\caption{Marginal score distributions ($n\!=\!100$).
+\#Zero: videos scoring exactly 0.0.}
 \label{tab:dist}
 \end{table}
 
@@ -313,14 +314,14 @@ distributions are sharply concentrated at 0.0, whereas the human
 distributions spread across the 0.0--0.4 range, confirming that the
 model's conservative prompt suppresses intermediate scores.
 
-\begin{figure}[t]
+\begin{figure*}[t]
 \centering
-\includegraphics[width=\linewidth]{./results/figures/fig5_distribution_violin.pdf}
+\includegraphics[width=0.85\textwidth]{./results/figures/fig5_distribution_violin.pdf}
 \caption{Violin plot of per-axis score distributions for the VLM
 and human annotators. The VLM concentrates mass at 0.0 while humans
 populate intermediate levels.}
 \label{fig:violin}
-\end{figure}
+\end{figure*}
 
 \subsection{Per-axis Agreement}
 Table~\ref{tab:agree} gives the three statistics per axis.
@@ -328,20 +329,20 @@ Table~\ref{tab:agree} gives the three statistics per axis.
 \begin{table}[t]
 \centering
 \small
+\setlength{\tabcolsep}{4pt}
 \begin{tabular}{lcccc}
 \toprule
-Axis & Spearman $\rho$ & Wt.\ Kappa & ICC H--V & ICC H--H \\
+Axis & $\rho$ & Wt.\ $\kappa$ & ICC\textsubscript{H-V} & ICC\textsubscript{H-H} \\
 \midrule
 Semantic & 0.468 & 0.335 & \textbf{0.510} & 0.522 \\
 Logical  & 0.497 & 0.235 & 0.322 & 0.613 \\
 Decision & 0.496 & 0.266 & 0.382 & 0.649 \\
 \midrule
-Overall (final) & \textbf{0.587} & --- & 0.536 & --- \\
+Overall  & \textbf{0.587} & --- & 0.536 & --- \\
 \bottomrule
 \end{tabular}
-\caption{Human--VLM agreement statistics ($n\!=\!100$, all
-$p\!<\!0.001$). Bold marks the dimension on which the VLM matches
-the human-to-human ceiling.}
+\caption{Human--VLM agreement ($n\!=\!100$, all $p\!<\!0.001$).
+$\rho$: Spearman. Bold: VLM matches inter-human ceiling.}
 \label{tab:agree}
 \end{table}
 
@@ -363,13 +364,13 @@ outliers correspond to clips with cumulative temporal degradation
 (Logical axis) or subtle obstacle removal (Decision axis), where the
 VLM assigns near-zero scores to cases that humans rate at 0.4--0.6.
 
-\begin{figure}[t]
+\begin{figure*}[t]
 \centering
-\includegraphics[width=\linewidth]{./results/figures/fig6_per_video_deviation.pdf}
+\includegraphics[width=0.85\textwidth]{./results/figures/fig6_per_video_deviation.pdf}
 \caption{Per-video deviation (VLM $-$ human average) on the weighted
 final score. Negative bars indicate VLM under-scoring.}
 \label{fig:deviation}
-\end{figure}
+\end{figure*}
 
 \subsection{Failure Modes}
 Manual inspection of the six false negatives and a sample of false
@@ -468,6 +469,23 @@ a single open-weight model.
 
 The dataset annotation, code, prompts, and consistency figures are
 released in the project repository.
+
+\section*{Supplementary Materials}
+Two JSON files are submitted alongside this report:
+\begin{itemize}
+  \item \texttt{annotation.json} --- per-video evaluation results
+        for all 100 clips, containing both human and LLM assessments.
+        Each entry includes \texttt{video\_id},
+        \texttt{human\_evaluation} (three-annotator average scores,
+        \texttt{is\_poisoned}, \texttt{attack\_level},
+        \texttt{final\_score}) and \texttt{llm\_evaluation}
+        (VLM scores, \texttt{reasoning}).
+  \item \texttt{evaluation\_criteria\&prompt\_design.json} ---
+        the full evaluation criteria (three-axis scoring rubric,
+        aggregation rules, noise calibration, pixel-deviation anchors)
+        and the complete prompt template (v2.7) used for VLM inference,
+        including the revision history from v2.0 to v2.7.
+\end{itemize}
 
 \bibliography{ai6102_refs}
 
