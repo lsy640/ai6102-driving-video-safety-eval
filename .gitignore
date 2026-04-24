@@ -25,3 +25,13 @@ error_*.err
 .DS_Store
 .vscode/
 .idea/
+
+# LaTeX build artifacts (keep .tex .pdf .bib .sty .bst)
+report/*.aux
+report/*.log
+report/*.bbl
+report/*.blg
+report/*.out
+report/*.toc
+report/*.synctex.gz
+texput.log

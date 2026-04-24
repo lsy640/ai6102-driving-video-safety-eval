@@ -237,6 +237,7 @@ floor; a judge whose H--V matches H--H is as reliable as the human
 references and cannot be improved by spending more on annotation.
 
 \section{Results and Analysis}
+<<<<<<< HEAD
 
 \subsection{Binary Poisoned Detection}
 Table~\ref{tab:binary} summarises the binary classification
@@ -289,14 +290,32 @@ receive exactly 0.0 on each axis, with a smaller cluster at 0.6 or
 above. Human annotators use the intermediate values 0.2 and 0.4 more
 frequently, yielding higher per-axis means despite broad agreement on
 which clips are clean.
+=======
+\subsection{Score Distributions}
+Table~\ref{tab:dist} reports the marginal distributions of the VLM
+and the three-annotator average. The VLM exhibits a strongly bimodal
+pattern: 77--81 of the 100 videos receive a score of exactly 0.0 on
+each axis, with a smaller cluster at 0.6 or above. Human annotators
+use the intermediate values 0.2 and 0.4 more frequently, producing
+higher per-axis means despite broad agreement on which clips are
+clean. The VLM labels 29 videos as poisoned and the human reference
+(any-dimension mean $\ge\!0.5$) labels 27, within 2 of the 30\%
+official prior.
+>>>>>>> upstream/main
 
 \begin{table}[t]
 \centering
 \small
+<<<<<<< HEAD
 \setlength{\tabcolsep}{4pt}
 \begin{tabular}{lcccc}
 \toprule
 Axis & VLM $\mu$ & Human $\mu$ & \#Zero & $\ge\!0.6$ \\
+=======
+\begin{tabular}{lcccc}
+\toprule
+Axis & VLM mean & Human mean & VLM 0-count & VLM $\ge\!0.6$ \\
+>>>>>>> upstream/main
 \midrule
 Semantic & 0.178 & 0.253 & 77 & 23 \\
 Logical  & 0.064 & 0.233 & 81 & 3  \\
@@ -304,6 +323,7 @@ Decision & 0.084 & 0.249 & 79 & 6  \\
 Final    & 0.106 & ---   & 71 & --- \\
 \bottomrule
 \end{tabular}
+<<<<<<< HEAD
 \caption{Marginal score distributions ($n\!=\!100$).
 \#Zero: videos scoring exactly 0.0.}
 \label{tab:dist}
@@ -322,6 +342,25 @@ and human annotators. The VLM concentrates mass at 0.0 while humans
 populate intermediate levels.}
 \label{fig:violin}
 \end{figure*}
+=======
+\caption{Marginal score distributions on 100 videos. Counts are out
+of 100.}
+\label{tab:dist}
+\end{table}
+
+\subsection{Binary Poisoned Detection}
+Using a human threshold of $0.5$ and a VLM threshold of $0.6$, the
+confusion matrix is TP $=21$, FP $=8$, FN $=6$, TN $=65$, yielding
+accuracy 0.860, precision 0.724, recall 0.778, and F1 0.750
+(Figure~\ref{fig:cm}). Treating $\max(\text{sem},\text{log},\text{dec})$
+as a continuous confidence score gives an ROC AUC of 0.839
+(Figure~\ref{fig:roc}), which is threshold-independent and therefore
+a cleaner summary of the judge's discriminative ability than any
+single operating point. The six false negatives are dominated by
+Logical-axis cases in which the VLM scored below 0.6 because no single
+object was clearly missing in any individual frame, despite high
+cumulative drift across the 8-frame sequence.
+>>>>>>> upstream/main
 
 \subsection{Per-axis Agreement}
 Table~\ref{tab:agree} gives the three statistics per axis.
@@ -329,24 +368,40 @@ Table~\ref{tab:agree} gives the three statistics per axis.
 \begin{table}[t]
 \centering
 \small
+<<<<<<< HEAD
 \setlength{\tabcolsep}{4pt}
 \begin{tabular}{lcccc}
 \toprule
 Axis & $\rho$ & Wt.\ $\kappa$ & ICC\textsubscript{H-V} & ICC\textsubscript{H-H} \\
+=======
+\begin{tabular}{lcccc}
+\toprule
+Axis & Spearman $\rho$ & Wt.\ Kappa & ICC H--V & ICC H--H \\
+>>>>>>> upstream/main
 \midrule
 Semantic & 0.468 & 0.335 & \textbf{0.510} & 0.522 \\
 Logical  & 0.497 & 0.235 & 0.322 & 0.613 \\
 Decision & 0.496 & 0.266 & 0.382 & 0.649 \\
 \midrule
+<<<<<<< HEAD
 Overall  & \textbf{0.587} & --- & 0.536 & --- \\
 \bottomrule
 \end{tabular}
 \caption{Human--VLM agreement ($n\!=\!100$, all $p\!<\!0.001$).
 $\rho$: Spearman. Bold: VLM matches inter-human ceiling.}
+=======
+Overall (final) & \textbf{0.587} & --- & 0.536 & --- \\
+\bottomrule
+\end{tabular}
+\caption{Human--VLM agreement statistics ($n\!=\!100$, all
+$p\!<\!0.001$). Bold marks the dimension on which the VLM matches
+the human-to-human ceiling.}
+>>>>>>> upstream/main
 \label{tab:agree}
 \end{table}
 
 The Semantic ICC of 0.510 falls within one standard error of the
+<<<<<<< HEAD
 inter-human ceiling of 0.522, indicating that entity-level reliability
 is comparable to that of an average human annotator. On Logical and
 Decision the Spearman rank correlation remains comparable
@@ -371,6 +426,55 @@ VLM assigns near-zero scores to cases that humans rate at 0.4--0.6.
 final score. Negative bars indicate VLM under-scoring.}
 \label{fig:deviation}
 \end{figure*}
+=======
+inter-human ceiling of 0.522, indicating that the model's
+entity-level reliability is comparable to that of an average human
+annotator. On Logical and Decision the Spearman rank correlation
+remains comparable to Semantic ($\rho\!\approx\!0.50$), so the
+relative ordering of videos is preserved, but the absolute scores
+are systematically lower (human 0.23 vs.\ VLM 0.06 on Logical;
+human 0.25 vs.\ VLM 0.08 on Decision). The ICC, which is sensitive
+to absolute agreement, penalises this offset.
+
+\subsection{Visual Diagnostics}
+Figure~\ref{fig:scatter} presents the per-axis human-vs-VLM scatter
+with linear fits. The Semantic points cluster along the diagonal,
+whereas the Logical and Decision points lie consistently below it.
+The radar plot in Figure~\ref{fig:radar} aggregates the four metrics
+across axes, making the gap between Semantic and the other two
+visible at a glance.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{../results/figures/fig1_scatter_regression.png}
+\caption{Human-average vs.\ VLM scores per axis with linear fits.}
+\label{fig:scatter}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.95\linewidth]{../results/figures/fig4_radar_metrics.png}
+\caption{Agreement metrics on a radar plot.}
+\label{fig:radar}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{../results/figures/fig3_confusion_matrix.png}
+\caption{Confusion matrix for binary poisoned detection
+(human $\ge\!0.5$, VLM $\ge\!0.6$).}
+\label{fig:cm}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.9\linewidth]{../results/figures/fig8_roc_curve.png}
+\caption{ROC curve on 100 videos, with
+$\max(\text{sem},\text{log},\text{dec})$ as the continuous
+VLM confidence. AUC $=0.839$.}
+\label{fig:roc}
+\end{figure}
+>>>>>>> upstream/main
 
 \subsection{Failure Modes}
 Manual inspection of the six false negatives and a sample of false
@@ -422,6 +526,7 @@ control-condition false-positive rate with a confidence interval; a
 full 100-video robustness sweep is left to future work.
 
 \subsection{Discussion}
+<<<<<<< HEAD
 The binary detection results (F1 0.750, AUC 0.839) demonstrate that
 a single open-weight VLM can serve as a viable screening tool for
 poisoned driving videos. The VLM's poisoned count of 29 closely
@@ -447,6 +552,25 @@ the intermediate values. The per-video deviation plot
 (Figure~\ref{fig:deviation}) confirms that under-scoring is pervasive
 rather than concentrated in a few outliers, further motivating
 prompt-level or post-hoc calibration.
+=======
+The Semantic ICC of 0.510 sits within one standard error of the
+inter-human ceiling of 0.522, indicating that the VLM has reached
+the noise floor for entity-level scoring; further prompt tuning on
+this axis is bounded by human variability rather than model
+capability. The zero false-positive rate across all three robustness
+controls supports the interpretation that this agreement is driven
+by visual grounding rather than by the text-channel statistics that
+a prompt-shortcut judge could also exploit. The under-scoring on Logical and Decision is primarily
+a prompt artefact: the noise-calibration clause introduced to
+suppress the 0.2 floor effect produced systematically conservative
+scores. Relaxing this clause for the Decision axis, where the cost
+of a missed safety risk exceeds that of a noisy false alarm, is a
+natural next ablation. The bimodal score distribution is acceptable
+for binary poisoned detection but would distort any downstream
+continuous ranking task; a calibration regressor trained on a
+held-out human subset could plausibly recover the intermediate
+values.
+>>>>>>> upstream/main
 
 \section{Conclusion}
 The proposed framework attains F1 0.750 and AUC 0.839 on binary
@@ -470,6 +594,7 @@ a single open-weight model.
 The dataset annotation, code, prompts, and consistency figures are
 released in the project repository.
 
+<<<<<<< HEAD
 \section*{Supplementary Materials}
 Two JSON files are submitted alongside this report:
 \begin{itemize}
@@ -487,6 +612,9 @@ Two JSON files are submitted alongside this report:
         including the revision history from v2.0 to v2.7.
 \end{itemize}
 
+=======
+\bibliographystyle{aaai24}
+>>>>>>> upstream/main
 \bibliography{ai6102_refs}
 
 \end{document}
